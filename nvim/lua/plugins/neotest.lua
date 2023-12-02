@@ -5,7 +5,7 @@ return {
 			"nvim-lua/plenary.nvim",
 			"antoinemadec/FixCursorHold.nvim",
 			"nvim-neotest/neotest-go",
-			"haydenmeade/neotest-jest",
+			{ "tolik505/neotest-jest", branch = 'allow_e2e-spec' },
 		},
 		config = function()
 			-- get neotest namespace (api call creates or returns namespace)
@@ -27,21 +27,27 @@ return {
 				adapters = {
 					require("neotest-go"),
 					require('neotest-jest')({
-						jest_test_discovery = false,
-						jestCommand = "npm test --",
+						jest_test_discovery = true,
+						jestCommand = function()
+							local file = vim.fn.expand('%:p')
+
+							return "node " ..
+								vim.fn.getcwd() .. "/node_modules/jest/bin/jest.js --runInBand --runTestsByPath " .. file
+						end,
 						jestConfigFile = function()
 							local file = vim.fn.expand('%:p')
 							if string.find(file, "e2e") then
-								print('Test e2e')
-								return string.match(file, ".*/libs/[^/]+") ..
-									"jest.e2e.config.ts"
+								local config = string.match(file, ".*/libs/[^/]+") ..
+									"/jest.e2e.config.ts"
+
+								return config
 							end
-							print('Test unit')
+
 							return string.match(file, ".*/libs/[^/]+") ..
-								"jest.config.ts"
+								"/jest.config.ts"
 						end,
 						env = { CI = true },
-						cwd = function(path) return vim.fn.getcwd() end,
+						cwd = vim.fn.getcwd(),
 					}),
 				},
 			})

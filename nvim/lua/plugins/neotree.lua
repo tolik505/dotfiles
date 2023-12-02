@@ -36,11 +36,11 @@ return {
 					},
 				},
 				follow_current_file = {
-					enabled = true, -- This will find and focus the file in the active buffer every time
+					enabled = true,         -- This will find and focus the file in the active buffer every time
 					--               -- the current file is changed while the tree is open.
 					leave_dirs_open = false, -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
 				},
-				group_empty_dirs = false, -- when true, empty folders will be grouped together
+				group_empty_dirs = false,   -- when true, empty folders will be grouped together
 				hijack_netrw_behavior = "open_default", -- netrw disabled, opening a directory opens neo-tree
 				-- in whatever position is specified in window.position
 				-- "open_current",  -- netrw disabled, opening a directory opens within the
@@ -78,11 +78,14 @@ return {
 					},
 				},
 
-				commands = {} -- Add a custom command or override a global one using the same function name
+				commands = {}, -- Add a custom command or override a global one using the same function name
+			},
+			default_component_configs = {
+				modified = {
+					symbol = "💾",
+					highlight = "NeoTreeModified",
+				},
 			},
 		}
 	end,
-	vim.keymap.set('n', '<leader>n', '<Cmd>Neotree toggle<CR>'),
-	vim.keymap.set('n', '<leader>b', '<Cmd>Neotree toggle show buffers right<CR>'),
-	vim.keymap.set('n', '<leader>s', '<Cmd>Neotree float git_status<CR>'),
 }

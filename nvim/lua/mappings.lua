@@ -73,7 +73,10 @@ vim.keymap.set('n', "<leader>tf", function() neotest.run.run(vim.fn.expand("%"))
 	{ desc = 'Run tests in current file' })
 vim.keymap.set('n', "<leader>ts", neotest.run.stop, { desc = "Stop test" })
 vim.keymap.set('n', "<leader>to", neotest.output.open, { desc = "Open test output" })
+vim.keymap.set('n', "<leader>tp", neotest.output_panel.toggle, { desc = "Toggle test output pannel" })
+vim.keymap.set('n', "<leader>tc", neotest.output_panel.clear, { desc = "Clear test output pannel" })
 vim.keymap.set('n', '<leader>tm', neotest.summary.toggle, { desc = 'Test summary' })
+vim.keymap.set('n', '<leader>td', function() neotest.run.run({ strategy = "dap" }) end, { desc = 'Debug nearest test' })
 
 -- Debug
 vim.keymap.set('n', '<leader>dc', dap.continue, { desc = 'Debug: Start/Continue' })
@@ -90,6 +93,7 @@ vim.keymap.set('n', '<leader>dl', dap.run_last,
 
 -- Neotree
 vim.keymap.set('n', '<leader>n', '<Cmd>Neotree toggle<CR>', { desc = 'Toggle Neotree' })
+vim.keymap.set('n', '<leader>b', '<Cmd>Neotree toggle show buffers right<CR>')
 
 -- Smart splits
 -- recommended mappings
@@ -120,15 +124,15 @@ vim.keymap.set('n', '<leader>oi', '<Cmd>Neorg index<CR>', { desc = 'Open Neorg i
 vim.keymap.set('n', '<leader>oc', '<Cmd>Neorg return<CR>', { desc = 'Close Neorg' })
 
 -- Noice
-vim.keymap.set('n', '<leader>ln', '<Cmd>Noice last<CR>', { desc = 'Last Noice message' })
-vim.keymap.set('n', '<leader>hn', '<Cmd>Noice history<CR>', { desc = 'Noice history' })
+vim.keymap.set('n', '<leader>nl', '<Cmd>Noice last<CR>', { desc = 'Last Noice message' })
+vim.keymap.set('n', '<leader>nh', '<Cmd>Noice history<CR>', { desc = 'Noice history' })
 
 -- Using ufo provider need remap `zR` and `zM`. If Neovim is 0.6.1, remap yourself
 vim.keymap.set('n', 'zR', require('ufo').openAllFolds, { desc = 'Open all folds' })
 vim.keymap.set('n', 'zM', require('ufo').closeAllFolds, { desc = 'Close all folds' })
 
 -- Neogit
-vim.keymap.set('n', '<leader>ng', '<Cmd>Neogit<CR>', { desc = 'Open Neogit' })
+vim.keymap.set('n', '<leader>g', '<Cmd>Neogit<CR>', { desc = 'Open Neogit' })
 
 -- Undo tree
-vim.keymap.set('n', '<leader>tu', vim.cmd.UndotreeToggle)
+vim.keymap.set('n', '<leader>u', vim.cmd.UndotreeToggle)

@@ -1,21 +1,27 @@
 local wezterm = require 'wezterm'
 return {
-	-- color_scheme = 'termnial.sexy',
 	color_scheme = 'Catppuccin Mocha',
 	enable_tab_bar = false,
 	font_size = 15.0,
-	-- macos_window_background_blur = 40,
 	macos_window_background_blur = 30,
-	-- window_background_image = '/Users/omerhamerman/Downloads/3840x1080-Wallpaper-041.jpg',
-	-- window_background_image_hsb = {
-	-- 	brightness = 0.01,
-	-- 	hue = 1.0,
-	-- 	saturation = 0.5,
+	native_macos_fullscreen_mode = false,
+	-- background = {
+	-- 	{
+	-- 		source = {
+	-- 			File = '~/Downloads/Blur-Wallpapers-07-2560-x-1600.jpg',
+	-- 		},
+	-- 		-- height = 'Contain',
+	-- 		-- width = 'Contain',
+	-- 		-- repeat_x = 'NoRepeat',
+	-- 		-- repeat_y = 'NoRepeat',
+	-- 		hsb = {
+	-- 			-- hue = 0.1,
+	-- 			brightness = 0.15,
+	-- 			saturation = 0.7,
+	-- 		},
+	-- 	},
 	-- },
-	window_background_opacity = 0.92,
-	-- window_background_opacity = 1.0,
-	-- window_background_opacity = 0.78,
-	-- window_background_opacity = 0.20,
+	window_background_opacity = 0.85,
 	window_decorations = 'RESIZE',
 	keys = {
 		{
@@ -25,11 +31,11 @@ return {
 		},
 	},
 	mouse_bindings = {
-	  -- Ctrl-click will open the link under the mouse cursor
-	  {
-	    event = { Up = { streak = 1, button = 'Left' } },
-	    mods = 'CTRL',
-	    action = wezterm.action.OpenLinkAtMouseCursor,
-	  },
+		-- Ctrl-click will open the link under the mouse cursor
+		{
+			event = { Up = { streak = 1, button = 'Left' } },
+			mods = 'CTRL',
+			action = wezterm.action.OpenLinkAtMouseCursor,
+		},
 	},
 }
