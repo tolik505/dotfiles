@@ -5,10 +5,7 @@ return {
   -- Enable `lukas-reineke/indent-blankline.nvim`
   -- See `:help ibl`
   main = 'ibl',
-  init = function()
-    require("ibl").setup({
-      -- other options
-      exclude = { filetypes = { "dashboard" } },
-    })
+  config = function()
+    require("ibl").setup()
   end,
 }

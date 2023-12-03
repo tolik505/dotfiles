@@ -1,11 +1,3 @@
-local harpoon_mark = require(
-	"harpoon.mark"
-)
-local harpoon_ui = require("harpoon.ui")
-local neotest = require("neotest")
-local dap = require 'dap'
-local dapui = require 'dapui'
-
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
@@ -14,6 +6,8 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 vim.keymap.set("x", "<leader>p", "\"_dP", { desc = 'Paste and keep copied value in the register' })
+vim.keymap.set("n", "<leader>rp", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
+	{ desc = 'Mass replace word under cursor' })
 
 -- Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
@@ -36,12 +30,14 @@ vim.keymap.set('n', 'tx', '<Cmd>BufferLinePickClose<CR>', { desc = 'Close tab' }
 vim.keymap.set('n', 'tg', '<Cmd>BufferLinePick<CR>', { desc = 'Pick tab' })
 
 -- Harpoon
-vim.keymap.set('n', '<C-a>', harpoon_mark.add_file, { desc = 'Mark buffer' })
-vim.keymap.set('n', '<C-l>', harpoon_ui.nav_next, { desc = 'Next harpoon buffer' })
-vim.keymap.set('n', '<C-h>', harpoon_ui.nav_prev, { desc = 'Previous harpoon buffer' })
-vim.keymap.set('n', '<C-x>', harpoon_mark.rm_file, { desc = 'Remove buffer from harpoon' })
-vim.keymap.set('n', '<C-c>', harpoon_mark.clear_all, { desc = 'Clear all buffers from harpoon' })
-vim.keymap.set('n', '<leader>e', harpoon_ui.toggle_quick_menu, { desc = 'Toggle harpoon quick menu' })
+vim.keymap.set('n', '<C-a>', function() require('harpoon.mark').add_file() end, { desc = 'Mark buffer' })
+vim.keymap.set('n', '<C-l>', function() require('harpoon.ui').nav_next() end, { desc = 'Next harpoon buffer' })
+vim.keymap.set('n', '<C-h>', function() require('harpoon.ui').nav_prev() end, { desc = 'Previous harpoon buffer' })
+vim.keymap.set('n', '<C-x>', function() require('harpoon.mark').rm_file() end, { desc = 'Remove buffer from harpoon' })
+vim.keymap.set('n', '<C-c>', function() require('harpoon.mark').clear_all() end,
+	{ desc = 'Clear all buffers from harpoon' })
+vim.keymap.set('n', '<leader>e', function() require('harpoon.ui').toggle_quick_menu() end,
+	{ desc = 'Toggle harpoon quick menu' })
 vim.keymap.set('n', '<leader>1', function() require('harpoon.ui').nav_file(1) end,
 	{ desc = 'Navigate to harpoon buffer 1' })
 vim.keymap.set('n', '<leader>2', function() require('harpoon.ui').nav_file(2) end,
@@ -55,8 +51,10 @@ vim.keymap.set('n', '<leader>5', function() require('harpoon.ui').nav_file(5) en
 
 
 -- Telescope See `:help telescope.builtin`
-vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
-vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
+vim.keymap.set('n', '<leader>?', function() require('telescope.builtin').oldfiles() end,
+	{ desc = '[?] Find recently opened files' })
+vim.keymap.set('n', '<leader><space>', function() require('telescope.builtin').buffers() end,
+	{ desc = '[ ] Find existing buffers' })
 vim.keymap.set('n', '<leader>/', function()
 	-- You can pass additional configuration to telescope to change theme, layout, etc.
 	require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
@@ -64,44 +62,51 @@ vim.keymap.set('n', '<leader>/', function()
 		previewer = false,
 	})
 end, { desc = '[/] Fuzzily search in current buffer' })
-vim.keymap.set('n', '<leader>gf', require('telescope.builtin').git_files, { desc = 'Search [G]it [F]iles' })
-vim.keymap.set('n', '<leader>sf', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
-vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
-vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
-vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
+vim.keymap.set('n', '<leader>gf', function() require('telescope.builtin').git_files() end,
+	{ desc = 'Search [G]it [F]iles' })
+vim.keymap.set('n', '<leader>sf', function() require('telescope.builtin').find_files() end, { desc = '[S]earch [F]iles' })
+vim.keymap.set('n', '<leader>sh', function() require('telescope.builtin').help_tags() end, { desc = '[S]earch [H]elp' })
+vim.keymap.set('n', '<leader>sw', function() require('telescope.builtin').grep_string() end,
+	{ desc = '[S]earch current [W]ord' })
+vim.keymap.set('n', '<leader>sg', function() require('telescope.builtin').live_grep() end,
+	{ desc = '[S]earch by [G]rep' })
 vim.keymap.set('n', '<leader>sG', ':LiveGrepGitRoot<cr>', { desc = '[S]earch by [G]rep on Git Root' })
-vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
-vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = '[S]earch [R]esume' })
+vim.keymap.set('n', '<leader>sd', function() require('telescope.builtin').diagnostics() end,
+	{ desc = '[S]earch [D]iagnostics' })
+vim.keymap.set('n', '<leader>sr', function() require('telescope.builtin').resume() end, { desc = '[S]earch [R]esume' })
 
 -- Terminal
 vim.keymap.set('n', '<C-t>', '<Cmd>ToggleTerm direction=float<cr>', { desc = 'Open terminal' })
 vim.keymap.set('t', '<C-t>', '<cmd>ToggleTerm<cr>', { desc = 'Close terminal' })
 
 -- Tests
-vim.keymap.set('n', "<leader>tt", neotest.run.run, { desc = 'Run nearest test' })
-vim.keymap.set('n', "<leader>tf", function() neotest.run.run(vim.fn.expand("%")) end,
+vim.keymap.set('n', "<leader>tt", function() require("neotest").run.run() end, { desc = 'Run nearest test' })
+vim.keymap.set('n', "<leader>tf", function() require("neotest").run.run(vim.fn.expand("%")) end,
 	{ desc = 'Run tests in current file' })
-vim.keymap.set('n', "<leader>ts", neotest.run.stop, { desc = "Stop test" })
-vim.keymap.set('n', "<leader>to", neotest.output.open, { desc = "Open test output" })
-vim.keymap.set('n', "<leader>tp", neotest.output_panel.toggle, { desc = "Toggle test output pannel" })
-vim.keymap.set('n', "<leader>tc", neotest.output_panel.clear, {
+vim.keymap.set('n', "<leader>ts", function() require("neotest").run.stop() end, { desc = "Stop test" })
+vim.keymap.set('n', "<leader>to", function() require("neotest").output.open() end, { desc = "Open test output" })
+vim.keymap.set('n', "<leader>tp", function() require("neotest").output_panel.toggle() end,
+	{ desc = "Toggle test output pannel" })
+vim.keymap.set('n', "<leader>tc", function() require("neotest").output_panel.clear() end, {
 	desc = "Clear test output pannel",
 })
-vim.keymap.set('n', '<leader>tm', neotest.summary.toggle, { desc = 'Test summary' })
-vim.keymap.set('n', '<leader>td', function() neotest.run.run({ strategy = "dap" }) end, { desc = 'Debug nearest test' })
+vim.keymap.set('n', '<leader>tm', function() require("neotest").summary.toggle() end, { desc = 'Test summary' })
+vim.keymap.set('n', '<leader>td', function() require("neotest").run.run({ strategy = "dap" }) end,
+	{ desc = 'Debug nearest test' })
 vim.keymap.set('n', '<leader>gt', '<cmd>GoUnit<cr>', { desc = 'Generate go test' })
 
 -- Debug
-vim.keymap.set('n', '<leader>dc', dap.continue, { desc = 'Debug: Start/Continue' })
-vim.keymap.set('n', '<leader>di', dap.step_into, { desc = 'Debug: Step Into' })
-vim.keymap.set('n', '<leader>do', dap.step_over, { desc = 'Debug: Step Over' })
-vim.keymap.set('n', '<leader>du', dap.step_out, { desc = 'Debug: Step Out' })
-vim.keymap.set('n', '<leader>dt', dap.terminate, { desc = 'Debug: Terminate' })
-vim.keymap.set('n', '<leader>dr', dapui.toggle, { desc = 'Debug: See last session result.' })
-vim.keymap.set('n', '<leader>db', dap.toggle_breakpoint, { desc = 'Debug: Toggle Breakpoint' })
-vim.keymap.set('n', '<leader>tdg', function() require('dap-go').debug_test() end,
+vim.keymap.set('n', '<leader>dc', function() require("dap").continue() end, { desc = 'Debug: Start/Continue' })
+vim.keymap.set('n', '<leader>di', function() require("dap").step_into() end, { desc = 'Debug: Step Into' })
+vim.keymap.set('n', '<leader>do', function() require("dap").step_over() end, { desc = 'Debug: Step Over' })
+vim.keymap.set('n', '<leader>du', function() require("dap").step_out() end, { desc = 'Debug: Step Out' })
+vim.keymap.set('n', '<leader>dt', function() require("dap").terminate() end, { desc = 'Debug: Terminate' })
+vim.keymap.set('n', '<leader>dr', function() require("dapui").toggle() end, { desc = 'Debug: See last session result.' })
+vim.keymap.set('n', '<leader>db', function() require("dap").toggle_breakpoint() end,
+	{ desc = 'Debug: Toggle Breakpoint' })
+vim.keymap.set('n', '<leader>tdg', function() require('require("dap")-go').debug_test() end,
 	{ desc = "Debug Nearest Go Test" })
-vim.keymap.set('n', '<leader>dl', dap.run_last,
+vim.keymap.set('n', '<leader>dl', function() require("dap").run_last() end,
 	{ desc = "Debug Last Test" })
 
 -- Neotree
@@ -113,18 +118,22 @@ vim.keymap.set('n', '<leader>b', '<Cmd>Neotree toggle show buffers right<CR>')
 -- resizing splits
 -- these keymaps will also accept a range,
 -- for example `10<A-h>` will `resize_left` by `(10 * config.default_amount)`
-vim.keymap.set('n', '<A-h>', require('smart-splits').resize_left, { desc = 'Resize window to left' })
-vim.keymap.set('n', '<A-j>', require('smart-splits').resize_down, { desc = 'Resize window down' })
-vim.keymap.set('n', '<A-k>', require('smart-splits').resize_up, { desc = 'Resize window up' })
-vim.keymap.set('n', '<A-l>', require('smart-splits').resize_right, { desc = 'Resize window to right' })
+vim.keymap.set('n', '<A-h>', function() require('smart-splits').resize_left() end, { desc = 'Resize window to left' })
+vim.keymap.set('n', '<A-j>', function() require('smart-splits').resize_down() end, { desc = 'Resize window down' })
+vim.keymap.set('n', '<A-k>', function() require('smart-splits').resize_up() end, { desc = 'Resize window up' })
+vim.keymap.set('n', '<A-l>', function() require('smart-splits').resize_right() end, { desc = 'Resize window to right' })
 -- swapping buffers between windows
-vim.keymap.set('n', '<leader><leader>h', require('smart-splits').swap_buf_left, { desc = 'Swap windows left' })
-vim.keymap.set('n', '<leader><leader>j', require('smart-splits').swap_buf_down, { desc = 'Swap window down' })
-vim.keymap.set('n', '<leader><leader>k', require('smart-splits').swap_buf_up, { desc = 'Swap window up' })
-vim.keymap.set('n', '<leader><leader>l', require('smart-splits').swap_buf_right, { desc = 'Swap window right' })
+vim.keymap.set('n', '<leader><leader>h', function() require('smart-splits').swap_buf_left() end,
+	{ desc = 'Swap windows left' })
+vim.keymap.set('n', '<leader><leader>j', function() require('smart-splits').swap_buf_down() end,
+	{ desc = 'Swap window down' })
+vim.keymap.set('n', '<leader><leader>k', function() require('smart-splits').swap_buf_up() end,
+	{ desc = 'Swap window up' })
+vim.keymap.set('n', '<leader><leader>l', function() require('smart-splits').swap_buf_right() end,
+	{ desc = 'Swap window right' })
 
 -- TreeSJ
-vim.keymap.set('n', '<leader>bs', require('treesj').toggle, { desc = 'Toggle block split' })
+vim.keymap.set('n', '<leader>bs', function() require('treesj').toggle() end, { desc = 'Toggle block split' })
 
 -- Tabs
 vim.keymap.set('n', 'tl', '<Cmd>BufferLineCycleNext<CR>', { desc = 'Next buffer' })
@@ -141,8 +150,8 @@ vim.keymap.set('n', '<leader>nl', '<Cmd>Noice last<CR>', { desc = 'Last Noice me
 vim.keymap.set('n', '<leader>nh', '<Cmd>Noice history<CR>', { desc = 'Noice history' })
 
 -- Using ufo provider need remap `zR` and `zM`. If Neovim is 0.6.1, remap yourself
-vim.keymap.set('n', 'zR', require('ufo').openAllFolds, { desc = 'Open all folds' })
-vim.keymap.set('n', 'zM', require('ufo').closeAllFolds, { desc = 'Close all folds' })
+vim.keymap.set('n', 'zR', function() require('ufo').openAllFolds() end, { desc = 'Open all folds' })
+vim.keymap.set('n', 'zM', function() require('ufo').closeAllFolds() end, { desc = 'Close all folds' })
 
 -- Neogit
 vim.keymap.set('n', '<leader>g', '<Cmd>Neogit<CR>', { desc = 'Open Neogit' })
