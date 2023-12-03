@@ -1,1 +1,4 @@
-return {'hexdigest/gounit-vim'}
+return {
+  'hexdigest/gounit-vim',
+  lazy = true,
+}

@@ -9,6 +9,7 @@
 return {
   -- NOTE: Yes, you can install new plugins here!
   'mfussenegger/nvim-dap',
+  lazy = true,
   -- NOTE: And you can specify dependencies as well
   dependencies = {
     -- Creates a beautiful debugger UI
@@ -20,7 +21,6 @@ return {
 
     -- Add your own debuggers here
     'leoluz/nvim-dap-go',
-    'David-Kunz/jester',
     'theHamsta/nvim-dap-virtual-text',
   },
   config = function()
@@ -58,23 +58,36 @@ return {
     -- Dap UI setup
     -- For more information, see |:help nvim-dap-ui|
     dapui.setup {
-      -- Set icons to characters that are more likely to work in every terminal.
-      --    Feel free to remove or use ones that you like more! :)
-      --    Don't feel like these are good choices.
-      icons = { expanded = '▾', collapsed = '▸', current_frame = '*' },
-      controls = {
-        icons = {
-          pause = '⏸',
-          play = '▶',
-          step_into = '⏎',
-          step_over = '⏭',
-          step_out = '⏮',
-          step_back = 'b',
-          run_last = '▶▶',
-          terminate = '⏹',
-          disconnect = '⏏',
+      layouts = {
+        {
+          elements = {
+            -- {
+            --   id = "stacks",
+            --   size = 0.25
+            -- },
+            -- {
+            --   id = "breakpoints",
+            --   size = 0.25
+            -- },
+            {
+              id = "scopes",
+              size = 0.25
+            }
+          },
+          position = "left",
+          size = 40
         },
-      },
+        {
+          elements = {
+            {
+              id = "console",
+              size = 0.5
+            }
+          },
+          position = "bottom",
+          size = 10
+        },
+      }
     }
 
     dap.listeners.after.event_initialized['dapui_config'] = dapui.open
@@ -83,29 +96,6 @@ return {
 
     -- Install golang specific config
     require('dap-go').setup()
-    require("jester").setup({
-      cmd = "node " ..
-          vim.fn.getcwd() .. "/node_modules/jest/bin/jest.js - t '$result' -- $file", -- run command
-      identifiers = { "test", "it" },                                                 -- used to identify tests
-      prepend = { "describe" },                                                       -- prepend describe blocks
-      expressions = { "call_expression" },                                            -- tree-sitter object used to scan for tests/describe blocks
-      path_to_jest_run = './node_modules/.bin/jest',                                  -- used to run tests
-      path_to_jest_debug = './node_modules/.bin/jest',                                -- used for debugging
-      terminal_cmd = ":vsplit | terminal",
-      dap = {
-        type = "pwa-node",
-        request = 'launch',
-        cwd = vim.fn.getcwd(),
-        runtimeArgs = { '--inspect-brk', '$path_to_jest', '--no-coverage', '-t', '$result', '--', '$file' },
-        args = { '--no-cache' },
-        sourceMaps = false,
-        protocol = 'inspector',
-        skipFiles = { '<node_internals>/**/*.js' },
-        console = 'integratedTerminal',
-        port = 9229,
-        disableOptimisticBPs = true
-      }
-    })
 
     dap.adapters["pwa-node"] = {
       type = "server",

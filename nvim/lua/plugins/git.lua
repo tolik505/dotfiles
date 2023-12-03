@@ -1,10 +1,23 @@
 return {
-	'tpope/vim-fugitive',
-	'tpope/vim-rhubarb',
-	'shumphrey/fugitive-gitlab.vim',
-	'sindrets/diffview.nvim',
+	{
+		'tpope/vim-fugitive',
+		event = "VeryLazy",
+	},
+	{
+		'tpope/vim-rhubarb',
+		event = "VeryLazy",
+	},
+	{
+		'shumphrey/fugitive-gitlab.vim',
+		event = "VeryLazy",
+	},
+	{
+		'sindrets/diffview.nvim',
+		event = "VeryLazy",
+	},
 	{
 		"NeogitOrg/neogit",
+		event = "VeryLazy",
 		dependencies = {
 			"nvim-lua/plenary.nvim", -- required
 			"nvim-telescope/telescope.nvim", -- optional
@@ -16,6 +29,7 @@ return {
 	{
 		-- Adds git related signs to the gutter, as well as utilities for managing changes
 		'lewis6991/gitsigns.nvim',
+		event = "VeryLazy",
 		opts = {
 			-- See `:help gitsigns.txt`
 			signs = {

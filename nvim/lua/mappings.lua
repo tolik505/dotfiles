@@ -1,4 +1,6 @@
-local harpoon_mark = require("harpoon.mark")
+local harpoon_mark = require(
+	"harpoon.mark"
+)
 local harpoon_ui = require("harpoon.ui")
 local neotest = require("neotest")
 local dap = require 'dap'
@@ -7,6 +9,11 @@ local dapui = require 'dapui'
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
+vim.keymap.set("n", "<C-d>", "<C-d>zz")
+vim.keymap.set("n", "<C-u>", "<C-u>zz")
+vim.keymap.set("n", "n", "nzzzv")
+vim.keymap.set("n", "N", "Nzzzv")
+vim.keymap.set("x", "<leader>p", "\"_dP", { desc = 'Paste and keep copied value in the register' })
 
 -- Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
@@ -43,6 +50,9 @@ vim.keymap.set('n', '<leader>3', function() require('harpoon.ui').nav_file(3) en
 	{ desc = 'Navigate to harpoon buffer 3' })
 vim.keymap.set('n', '<leader>4', function() require('harpoon.ui').nav_file(4) end,
 	{ desc = 'Navigate to harpoon buffer 4' })
+vim.keymap.set('n', '<leader>5', function() require('harpoon.ui').nav_file(5) end,
+	{ desc = 'Navigate to harpoon buffer 5' })
+
 
 -- Telescope See `:help telescope.builtin`
 vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
@@ -74,9 +84,12 @@ vim.keymap.set('n', "<leader>tf", function() neotest.run.run(vim.fn.expand("%"))
 vim.keymap.set('n', "<leader>ts", neotest.run.stop, { desc = "Stop test" })
 vim.keymap.set('n', "<leader>to", neotest.output.open, { desc = "Open test output" })
 vim.keymap.set('n', "<leader>tp", neotest.output_panel.toggle, { desc = "Toggle test output pannel" })
-vim.keymap.set('n', "<leader>tc", neotest.output_panel.clear, { desc = "Clear test output pannel" })
+vim.keymap.set('n', "<leader>tc", neotest.output_panel.clear, {
+	desc = "Clear test output pannel",
+})
 vim.keymap.set('n', '<leader>tm', neotest.summary.toggle, { desc = 'Test summary' })
 vim.keymap.set('n', '<leader>td', function() neotest.run.run({ strategy = "dap" }) end, { desc = 'Debug nearest test' })
+vim.keymap.set('n', '<leader>gt', '<cmd>GoUnit<cr>', { desc = 'Generate go test' })
 
 -- Debug
 vim.keymap.set('n', '<leader>dc', dap.continue, { desc = 'Debug: Start/Continue' })

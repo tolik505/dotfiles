@@ -1,8 +1,7 @@
 local plugins = {
-	'tpope/vim-dadbod',
-	'kristijanhusak/vim-dadbod-completion',
 	{
 		'kristijanhusak/vim-dadbod-ui',
+		lazy = true,
 		dependencies = {
 			{ 'tpope/vim-dadbod',                     lazy = true },
 			{ 'kristijanhusak/vim-dadbod-completion', ft = { 'sql', 'mysql' }, lazy = true },

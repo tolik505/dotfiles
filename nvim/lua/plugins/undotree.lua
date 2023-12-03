@@ -1,5 +1,6 @@
 local plugin = {
-	'mbbill/undotree'
+	'mbbill/undotree',
+	event = "VeryLazy",
 }
 
 return plugin
