@@ -3,6 +3,7 @@
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
+vim.keymap.set("n", "G", "Gzz")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 vim.keymap.set("x", "<leader>p", "\"_dP", { desc = 'Paste and keep copied value in the register' })
@@ -104,7 +105,7 @@ vim.keymap.set('n', '<leader>dt', function() require("dap").terminate() end, { d
 vim.keymap.set('n', '<leader>dr', function() require("dapui").toggle() end, { desc = 'Debug: See last session result.' })
 vim.keymap.set('n', '<leader>db', function() require("dap").toggle_breakpoint() end,
 	{ desc = 'Debug: Toggle Breakpoint' })
-vim.keymap.set('n', '<leader>tdg', function() require('require("dap")-go').debug_test() end,
+vim.keymap.set('n', '<leader>tdg', function() require('dap-go').debug_test() end,
 	{ desc = "Debug Nearest Go Test" })
 vim.keymap.set('n', '<leader>dl', function() require("dap").run_last() end,
 	{ desc = "Debug Last Test" })
@@ -135,12 +136,6 @@ vim.keymap.set('n', '<leader><leader>l', function() require('smart-splits').swap
 -- TreeSJ
 vim.keymap.set('n', '<leader>bs', function() require('treesj').toggle() end, { desc = 'Toggle block split' })
 
--- Tabs
-vim.keymap.set('n', 'tl', '<Cmd>BufferLineCycleNext<CR>', { desc = 'Next buffer' })
-vim.keymap.set('n', 'th', '<Cmd>BufferLineCyclePrev<CR>', { desc = 'Previous buffer' })
-vim.keymap.set('n', 'tx', '<Cmd>BufferLinePickClose<CR>', { desc = 'Pick a buffer to close' })
-vim.keymap.set('n', 'tg', '<Cmd>BufferLinePick<CR>', { desc = 'Pick a buffer' })
-
 -- Neorg
 vim.keymap.set('n', '<leader>oi', '<Cmd>Neorg index<CR>', { desc = 'Open Neorg index' })
 vim.keymap.set('n', '<leader>oc', '<Cmd>Neorg return<CR>', { desc = 'Close Neorg' })
@@ -158,3 +153,6 @@ vim.keymap.set('n', '<leader>g', '<Cmd>Neogit<CR>', { desc = 'Open Neogit' })
 
 -- Undo tree
 vim.keymap.set('n', '<leader>u', vim.cmd.UndotreeToggle)
+
+-- Useless
+vim.keymap.set("n", "<leader>fa", "<cmd>CellularAutomaton game_of_life<CR>", { desc = 'Funny animation' });

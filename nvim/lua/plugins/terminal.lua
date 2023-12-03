@@ -2,7 +2,7 @@ return {
 	{
 		'akinsho/toggleterm.nvim',
 		version = "*",
-		lazy = true,
+		cmd = 'ToggleTerm',
 		config = true,
 	}
 }

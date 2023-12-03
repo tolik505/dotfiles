@@ -6,7 +6,7 @@ return {
     'nvim-treesitter/nvim-treesitter-textobjects',
   },
   build = ':TSUpdate',
-  config = function()
+  init = function()
     -- [[ Configure Treesitter ]]
     -- See `:help nvim-treesitter`
     -- Defer Treesitter setup after first render to improve startup time of 'nvim {filename}'
