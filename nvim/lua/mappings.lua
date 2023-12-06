@@ -24,18 +24,18 @@ vim.keymap.set('n', '<leader>ld', vim.diagnostic.setloclist, { desc = 'Open diag
 vim.keymap.set('n', '<leader>dfo', '<Cmd>DiffviewOpen<CR>', { desc = 'Open diff view' })
 vim.keymap.set('n', '<leader>dfc', '<Cmd>DiffviewClose<CR>', { desc = 'Close diff view' })
 
--- Tabs
-vim.keymap.set('n', 'tl', '<Cmd>BufferLineCycleNext<CR>', { desc = 'Next tab' })
-vim.keymap.set('n', 'th', '<Cmd>BufferLineCyclePrev<CR>', { desc = 'Previous tab' })
-vim.keymap.set('n', 'tx', '<Cmd>BufferLinePickClose<CR>', { desc = 'Close tab' })
-vim.keymap.set('n', 'tg', '<Cmd>BufferLinePick<CR>', { desc = 'Pick tab' })
+-- Buffers
+vim.keymap.set('n', '<C-l>', '<Cmd>bn<CR>', { desc = 'Next buffer' })
+vim.keymap.set('n', '<C-h>', '<Cmd>bp<CR>', { desc = 'Previous buffer' })
+vim.keymap.set('n', '<C-;>', '<Cmd>bd<CR>', { desc = 'Close buffer' })
 
 -- Harpoon
-vim.keymap.set('n', '<C-a>', function() require('harpoon.mark').add_file() end, { desc = 'Mark buffer' })
-vim.keymap.set('n', '<C-l>', function() require('harpoon.ui').nav_next() end, { desc = 'Next harpoon buffer' })
-vim.keymap.set('n', '<C-h>', function() require('harpoon.ui').nav_prev() end, { desc = 'Previous harpoon buffer' })
-vim.keymap.set('n', '<C-x>', function() require('harpoon.mark').rm_file() end, { desc = 'Remove buffer from harpoon' })
-vim.keymap.set('n', '<C-c>', function() require('harpoon.mark').clear_all() end,
+vim.keymap.set('n', '<C-a>', function() require('harpoon.mark').add_file() end, { desc = 'Add buffer to harpoon' })
+vim.keymap.set('n', '<C-j>', function() require('harpoon.ui').nav_next() end, { desc = 'Next harpoon buffer' })
+vim.keymap.set('n', '<C-k>', function() require('harpoon.ui').nav_prev() end, { desc = 'Previous harpoon buffer' })
+vim.keymap.set('n', '<leader>x', function() require('harpoon.mark').rm_file() end,
+	{ desc = 'Remove buffer from harpoon' })
+vim.keymap.set('n', '<leader>xa', function() require('harpoon.mark').clear_all() end,
 	{ desc = 'Clear all buffers from harpoon' })
 vim.keymap.set('n', '<leader>e', function() require('harpoon.ui').toggle_quick_menu() end,
 	{ desc = 'Toggle harpoon quick menu' })
@@ -75,6 +75,7 @@ vim.keymap.set('n', '<leader>sG', ':LiveGrepGitRoot<cr>', { desc = '[S]earch by 
 vim.keymap.set('n', '<leader>sd', function() require('telescope.builtin').diagnostics() end,
 	{ desc = '[S]earch [D]iagnostics' })
 vim.keymap.set('n', '<leader>sr', function() require('telescope.builtin').resume() end, { desc = '[S]earch [R]esume' })
+vim.keymap.set('n', '<leader>ss', '<Cmd>Telescope persisted<CR>', { desc = '[S]earch [S]essions' })
 
 -- Terminal
 vim.keymap.set('n', '<C-t>', '<Cmd>ToggleTerm direction=float<cr>', { desc = 'Open terminal' })

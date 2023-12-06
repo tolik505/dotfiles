@@ -32,6 +32,8 @@ return {
         },
       },
     }
+    -- Enable extension 'persisted' for sessions search
+    require("telescope").load_extension("persisted")
 
     -- Enable telescope fzf native, if installed
     pcall(require('telescope').load_extension, 'fzf')
@@ -53,7 +55,7 @@ return {
 
       -- Find the Git root directory from the current file's path
       local git_root = vim.fn.systemlist("git -C " .. vim.fn.escape(current_dir, " ") .. " rev-parse --show-toplevel")
-      [1]
+          [1]
       if vim.v.shell_error ~= 0 then
         print("Not a git repository. Searching on current working directory")
         return cwd

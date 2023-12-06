@@ -6,6 +6,16 @@ return {
   -- See `:help ibl`
   main = 'ibl',
   config = function()
-    require("ibl").setup()
+    require("ibl").setup({
+      exclude = {
+        filetypes = {
+          'lspinfo',
+          'checkhealth',
+          'help',
+          'dashboard',
+          '',
+        },
+      },
+    })
   end,
 }
