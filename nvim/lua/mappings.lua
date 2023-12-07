@@ -3,6 +3,8 @@
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
+vim.keymap.set("n", "<C-o>", "<C-o>zz")
+vim.keymap.set("n", "<C-i>", "<C-i>zz")
 vim.keymap.set("n", "G", "Gzz")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
@@ -135,7 +137,7 @@ vim.keymap.set('n', '<leader><leader>l', function() require('smart-splits').swap
 	{ desc = 'Swap window right' })
 
 -- TreeSJ
-vim.keymap.set('n', '<leader>bs', function() require('treesj').toggle() end, { desc = 'Toggle block split' })
+vim.keymap.set('n', '<leader>j', '<Cmd>TSJToggle<CR>', { desc = 'Toggle block split' })
 
 -- Neorg
 vim.keymap.set('n', '<leader>oi', '<Cmd>Neorg index<CR>', { desc = 'Open Neorg index' })

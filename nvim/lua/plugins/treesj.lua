@@ -1,9 +1,11 @@
 return {
 	'Wansmer/treesj',
 	lazy = true,
-	keys = { '<space>m', '<space>j', '<space>s' },
+	cmd = { 'TSJToggle' },
 	dependencies = { 'nvim-treesitter/nvim-treesitter' },
 	config = function()
-		require('treesj').setup({ --[[ your config ]] })
+		require('treesj').setup({
+			use_default_keymaps = false,
+		})
 	end,
 }
