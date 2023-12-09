@@ -1,0 +1,56 @@
+layout {
+    default_tab_template {
+        children
+        pane size=1 borderless=true {
+            // FIXME: Zellij wants absolute path only
+	    plugin location="file:/Users/apipko/.config/zellij/plugins/zjstatus.wasm" {
+                format_left  "{mode} #[fg=#89B4FA,bold]{session} {tabs}"
+                format_right "{datetime}"
+                format_space ""
+
+                border_enabled  "false"
+                border_char     "─"
+                border_format   "#[fg=#6C7086]{char}"
+                border_position "top"
+
+                hide_frame_for_single_pane "true"
+
+                mode_normal  "#[bg=white] "
+                mode_locked        "#[bg=blue] "
+                mode_resize        "#[bg=yellow] "
+                mode_pane          "#[bg=yellow] "
+                mode_tab           "#[bg=green] "
+                mode_enter_search  "#[bg=purple] "
+                mode_search        "#[bg=purple] "
+                mode_rename_tab    "#[bg=green] "
+                mode_rename_pane   "#[bg=yellow] "
+                mode_session       "#[bg=red] "
+                mode_move          "#[bg=yellow] "
+
+                tab_normal   "#[fg=#6C7086] {name} "
+                tab_active   "#[fg=#9399B2,bold,italic] {name} "
+
+                datetime        "#[fg=#6C7086,bold] {format} "
+                datetime_format "%A, %d %b %Y %H:%M"
+                datetime_timezone "Europe/Berlin"
+            }
+        }
+    }
+
+    tab name="editor" focus=true {
+        pane borderless=true
+    }
+    tab name="terminal" {
+        pane
+    }
+}
+
+keybinds {
+    locked {
+        bind "Ctrl t" { GoToTab 2; SwitchToMode "Normal"; }
+    }
+
+    shared_except "locked" {
+        bind "Ctrl t" { GoToTab 1; SwitchToMode "Locked"; }
+    }
+}

@@ -29,7 +29,7 @@ vim.keymap.set('n', '<leader>dfc', '<Cmd>DiffviewClose<CR>', { desc = 'Close dif
 -- Buffers
 vim.keymap.set('n', '<C-l>', '<Cmd>bn<CR>', { desc = 'Next buffer' })
 vim.keymap.set('n', '<C-h>', '<Cmd>bp<CR>', { desc = 'Previous buffer' })
-vim.keymap.set('n', '<C-;>', '<Cmd>bd<CR>', { desc = 'Close buffer' })
+vim.keymap.set('n', '<C-m>', '<Cmd>bd<CR>', { desc = 'Close buffer' })
 
 -- Harpoon
 vim.keymap.set('n', '<C-a>', function() require('harpoon.mark').add_file() end, { desc = 'Add buffer to harpoon' })
@@ -80,8 +80,8 @@ vim.keymap.set('n', '<leader>sr', function() require('telescope.builtin').resume
 vim.keymap.set('n', '<leader>ss', '<Cmd>Telescope persisted<CR>', { desc = '[S]earch [S]essions' })
 
 -- Terminal
-vim.keymap.set('n', '<C-t>', '<Cmd>ToggleTerm direction=float<cr>', { desc = 'Open terminal' })
-vim.keymap.set('t', '<C-t>', '<cmd>ToggleTerm<cr>', { desc = 'Close terminal' })
+-- vim.keymap.set('n', '<C-t>', '<Cmd>ToggleTerm direction=float<cr>', { desc = 'Open terminal' })
+-- vim.keymap.set('t', '<C-t>', '<cmd>ToggleTerm<cr>', { desc = 'Close terminal' })
 
 -- Tests
 vim.keymap.set('n', "<leader>tt", function() require("neotest").run.run() end, { desc = 'Run nearest test' })
