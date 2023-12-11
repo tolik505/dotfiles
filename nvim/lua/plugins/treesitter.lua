@@ -21,6 +21,7 @@ return {
           'vimdoc',
           'vim',
           'bash',
+          'kdl',
           "markdown",
           "markdown_inline",
           "regex",

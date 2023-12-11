@@ -15,6 +15,7 @@ keybinds clear-defaults=true {
 	}
 	locked {
 		bind "Ctrl g" { SwitchToMode "Normal"; }
+		bind "Ctrl e" { GoToTab 2; SwitchToMode "Normal"; }// This is for editor layout
 	}
 	resize {
 		bind "Ctrl n" { SwitchToMode "Normal"; }
@@ -132,6 +133,7 @@ keybinds clear-defaults=true {
 	}
 	shared_except "locked" {
 		bind "Ctrl g" { SwitchToMode "Locked"; }
+		bind "Ctrl e" { GoToTab 1; SwitchToMode "Locked"; } // This is for editor layout
 		bind "Alt n" { NewPane; }
 		bind "Alt h" "Alt Left" { MoveFocusOrTab "Left"; }
 		bind "Alt l" "Alt Right" { MoveFocusOrTab "Right"; }
@@ -285,7 +287,7 @@ default_mode "locked"
 // Path to the default editor to use to edit pane scrollbuffer
 // Default: $EDITOR or $VISUAL
 //
-// scrollback_editor "/usr/bin/vim"
+scrollback_editor "/opt/homebrew/bin/nvim"
 
 // When attaching to an existing session with other users,
 // should the session be mirrored (true)

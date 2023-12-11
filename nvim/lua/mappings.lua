@@ -8,13 +8,17 @@ vim.keymap.set("n", "<C-i>", "<C-i>zz")
 vim.keymap.set("n", "G", "Gzz")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
-vim.keymap.set("x", "<leader>p", "\"_dP", { desc = 'Paste and keep copied value in the register' })
+vim.keymap.set("x", "<leader>p", "\"_dP", { desc = 'Paste into selection and keep copied value in the register' })
 vim.keymap.set("n", "<leader>rp", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
 	{ desc = 'Mass replace word under cursor' })
 
 -- Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+
+-- Quickfix list
+vim.keymap.set('n', '<leader>co', '<Cmd>copen<CR>', { desc = 'Open quickfix list' })
+vim.keymap.set('n', '<leader>cc', '<Cmd>cclose<CR>', { desc = 'Close quickfix list' })
 
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
@@ -29,7 +33,7 @@ vim.keymap.set('n', '<leader>dfc', '<Cmd>DiffviewClose<CR>', { desc = 'Close dif
 -- Buffers
 vim.keymap.set('n', '<C-l>', '<Cmd>bn<CR>', { desc = 'Next buffer' })
 vim.keymap.set('n', '<C-h>', '<Cmd>bp<CR>', { desc = 'Previous buffer' })
-vim.keymap.set('n', '<C-m>', '<Cmd>bd<CR>', { desc = 'Close buffer' })
+vim.keymap.set('n', '<leader>q', '<Cmd>bd<CR>', { desc = 'Close buffer' })
 
 -- Harpoon
 vim.keymap.set('n', '<C-a>', function() require('harpoon.mark').add_file() end, { desc = 'Add buffer to harpoon' })
@@ -158,4 +162,4 @@ vim.keymap.set('n', '<leader>g', '<Cmd>Neogit<CR>', { desc = 'Open Neogit' })
 vim.keymap.set('n', '<leader>u', vim.cmd.UndotreeToggle)
 
 -- Useless
-vim.keymap.set("n", "<leader>fa", "<cmd>CellularAutomaton game_of_life<CR>", { desc = 'Funny animation' });
+vim.keymap.set("n", "<leader>fa", "<cmd>CellularAutomaton game_of_life<CR>", { desc = 'Funny animation' })

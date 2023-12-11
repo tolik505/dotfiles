@@ -17,7 +17,7 @@ return {
 	},
 	{
 		"NeogitOrg/neogit",
-		event = "VeryLazy",
+		cmd = "Neogit",
 		dependencies = {
 			"nvim-lua/plenary.nvim", -- required
 			"nvim-telescope/telescope.nvim", -- optional
@@ -50,14 +50,14 @@ return {
 				end
 
 				-- Navigation
-				map('n', ']c', function()
-					if vim.wo.diff then return ']c' end
+				map('n', ']h', function()
+					if vim.wo.diff then return ']h' end
 					vim.schedule(function() gs.next_hunk() end)
 					return '<Ignore>'
 				end, { expr = true, desc = 'Next hunk' })
 
-				map('n', '[c', function()
-					if vim.wo.diff then return '[c' end
+				map('n', '[h', function()
+					if vim.wo.diff then return '[h' end
 					vim.schedule(function() gs.prev_hunk() end)
 					return '<Ignore>'
 				end, { expr = true, desc = 'Previous hunk' })

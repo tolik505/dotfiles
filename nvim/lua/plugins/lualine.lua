@@ -20,7 +20,8 @@ return {
             },
           }
         },
-        lualine_z = {
+        lualine_c = {},
+        lualine_x = {
           {
             function()
               for _, buf in ipairs(vim.api.nvim_list_bufs()) do
@@ -30,6 +31,15 @@ return {
               end
               return ''
             end,
+          },
+          'encoding', 'fileformat', 'filetype',
+        },
+        lualine_z = {
+          {
+            'mode',
+            -- fmt = function(str)
+            --   return str:sub(1, 1)
+            -- end
           },
         },
       },
