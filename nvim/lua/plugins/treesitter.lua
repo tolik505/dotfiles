@@ -4,6 +4,7 @@ return {
   event = "VeryLazy",
   dependencies = {
     'nvim-treesitter/nvim-treesitter-textobjects',
+    'RRethy/nvim-treesitter-textsubjects',
   },
   build = ':TSUpdate',
   init = function()
@@ -85,6 +86,15 @@ return {
             swap_previous = {
               ['<leader>A'] = '@parameter.inner',
             },
+          },
+        },
+        textsubjects = {
+          enable = true,
+          prev_selection = ',',
+          keymaps = {
+            ['.'] = 'textsubjects-smart',
+            [';'] = 'textsubjects-container-outer',
+            ['i;'] = 'textsubjects-container-inner',
           },
         },
       }

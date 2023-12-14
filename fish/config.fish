@@ -3,6 +3,8 @@ if status is-interactive
 end
 
 # Abbreviation
+abbr -a bri brew install
+abbr -a bru brew uninstall
 abbr -a ze zellij
 abbr -a zes zellij -s
 abbr -a zel zellij ls

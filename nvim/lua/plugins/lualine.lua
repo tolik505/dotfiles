@@ -1,6 +1,7 @@
 return {
   'nvim-lualine/lualine.nvim',
   -- See `:help lualine.txt`
+  event = 'VeryLazy',
   opts = {
     options = {
       theme = 'catppuccin',
