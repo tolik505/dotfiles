@@ -15,7 +15,7 @@ keybinds clear-defaults=true {
 	}
 	locked {
 		bind "Ctrl g" { SwitchToMode "Normal"; }
-		bind "Ctrl e" { GoToTab 2; SwitchToMode "Normal"; }// This is for editor layout
+		bind "Ctrl t" { GoToTab 2; SwitchToMode "Normal"; }// This is for editor layout
 	}
 	resize {
 		bind "Ctrl n" { SwitchToMode "Normal"; }
@@ -49,7 +49,7 @@ keybinds clear-defaults=true {
 		bind "r" { SwitchToMode "RenamePane"; PaneNameInput 0;}
 	}
 	tab {
-		bind "Ctrl t" { SwitchToMode "Normal"; }
+		bind "Ctrl b" { SwitchToMode "Normal"; }
 		bind "r" { SwitchToMode "RenameTab"; TabNameInput 0; }
 		bind "h" "Left" "Up" "k" { GoToPreviousTab; SwitchToMode "Normal"; }
 		bind "l" "Right" "Down" "j" { GoToNextTab; SwitchToMode "Normal"; }
@@ -133,7 +133,7 @@ keybinds clear-defaults=true {
 	}
 	shared_except "locked" {
 		bind "Ctrl g" { SwitchToMode "Locked"; }
-		bind "Ctrl e" { GoToTab 1; SwitchToMode "Locked"; } // This is for editor layout
+		bind "Ctrl t" { GoToTab 1; SwitchToMode "Locked"; } // This is for editor layout
 		bind "Alt n" { NewPane; }
 		bind "Alt h" "Alt Left" { MoveFocusOrTab "Left"; }
 		bind "Alt l" "Alt Right" { MoveFocusOrTab "Right"; }
@@ -160,7 +160,7 @@ keybinds clear-defaults=true {
 		bind "Ctrl x" { SwitchToMode "Session"; }
 	}
 	shared_except "tab" "locked" {
-		bind "Ctrl t" { SwitchToMode "Tab"; }
+		bind "Ctrl b" { SwitchToMode "Tab"; }
 	}
 	shared_except "renametab" "locked" {
 		bind "Alt r" { SwitchToMode "RenameTab"; }

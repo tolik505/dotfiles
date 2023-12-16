@@ -283,7 +283,10 @@ vim.keymap.set({ 'n', 'v' }, '<leader>ff', function()
 end, { desc = 'Format file or range (in visual mode)' })
 
 -- Linting
-vim.keymap.set('n', '<leader>fl', '<cmd>EslintFixAll<CR>', { desc = 'Toggle Undo tree' })
+vim.keymap.set('n', '<leader>fl', '<cmd>EslintFixAll<CR>', { desc = 'Eslint fix all' })
+
+-- Markdown preview
+vim.keymap.set('n', '<leader>mp', '<cmd>MarkdownPreviewToggle<CR>', { desc = 'Markdown preview toggle' })
 
 -- Useless
 vim.keymap.set('n', '<leader>fa', '<cmd>CellularAutomaton game_of_life<CR>', { desc = 'Funny animation' })
