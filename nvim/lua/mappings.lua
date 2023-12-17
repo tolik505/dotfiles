@@ -128,11 +128,10 @@ vim.keymap.set('n', '<leader>sr', function()
   require('telescope.builtin').resume()
 end, { desc = '[S]earch [R]esume' })
 
-vim.keymap.set('n', '<leader>ss', '<Cmd>Telescope persisted<CR>', { desc = '[S]earch [S]essions' })
+vim.keymap.set('n', '<leader>sS', '<Cmd>Telescope persisted<CR>', { desc = '[S]earch [S]essions' })
 
--- Terminal
--- vim.keymap.set('n', '<C-t>', '<Cmd>ToggleTerm direction=float<cr>', { desc = 'Open terminal' })
--- vim.keymap.set('t', '<C-t>', '<cmd>ToggleTerm<cr>', { desc = 'Close terminal' })
+-- Sessions
+vim.keymap.set('n', '<leader>ss', '<Cmd>SessionSave<CR>', { desc = '[S]ave [S]ession' })
 
 -- Tests
 vim.keymap.set('n', '<leader>tt', function()
