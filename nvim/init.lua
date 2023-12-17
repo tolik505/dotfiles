@@ -3,14 +3,14 @@
 --  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
-vim.o.tabstop = 4      -- A TAB character looks like 4 spaces
+vim.o.tabstop = 4 -- A TAB character looks like 4 spaces
 vim.o.expandtab = true -- Pressing the TAB key will insert spaces instead of a TAB character
-vim.o.softtabstop = 4  -- Number of spaces inserted instead of a TAB character
-vim.o.shiftwidth = 4   -- Number of spaces inserted when indenting
+vim.o.softtabstop = 4 -- Number of spaces inserted instead of a TAB character
+vim.o.shiftwidth = 4 -- Number of spaces inserted when indenting
 
 -- UFO folding
-vim.o.foldcolumn = "1" -- '0' is not bad
-vim.o.foldlevel = 99   -- Using ufo provider need a large value, feel free to decrease the value
+vim.o.foldcolumn = '1' -- '0' is not bad
+vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
 vim.o.foldlevelstart = 99
 vim.o.foldenable = true
 vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
@@ -103,7 +103,7 @@ vim.opt.spell = true
 
 vim.cmd.colorscheme 'catppuccin-macchiato'
 
-require('mappings')
+require 'mappings'
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

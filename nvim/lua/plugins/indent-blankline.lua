@@ -1,12 +1,12 @@
 return {
   -- Add indentation guides even on blank lines
   'lukas-reineke/indent-blankline.nvim',
-  event = "VeryLazy",
+  event = { 'BufRead', 'BufNewFile' },
   -- Enable `lukas-reineke/indent-blankline.nvim`
   -- See `:help ibl`
   main = 'ibl',
   config = function()
-    require("ibl").setup({
+    require('ibl').setup {
       exclude = {
         filetypes = {
           'lspinfo',
@@ -16,6 +16,6 @@ return {
           '',
         },
       },
-    })
+    }
   end,
 }

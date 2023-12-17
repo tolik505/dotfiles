@@ -1,7 +1,7 @@
 return {
   -- Highlight, edit, and navigate code
   'nvim-treesitter/nvim-treesitter',
-  event = "VeryLazy",
+  event = { 'BufRead', 'BufNewFile' },
   dependencies = {
     'nvim-treesitter/nvim-treesitter-textobjects',
     'RRethy/nvim-treesitter-textsubjects',
@@ -23,9 +23,9 @@ return {
           'vim',
           'bash',
           'kdl',
-          "markdown",
-          "markdown_inline",
-          "regex",
+          'markdown',
+          'markdown_inline',
+          'regex',
         },
 
         -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
@@ -99,5 +99,5 @@ return {
         },
       }
     end, 0)
-  end
+  end,
 }

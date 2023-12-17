@@ -266,8 +266,28 @@ vim.keymap.set('n', 'zM', function()
   require('ufo').closeAllFolds()
 end, { desc = 'Close all folds' })
 
--- Neogit
+-- Git
 vim.keymap.set('n', '<leader>g', '<Cmd>Neogit<CR>', { desc = 'Open Neogit' })
+
+vim.keymap.set('n', '<leader>gy', function()
+  require('gitlinker').get_buf_range_url('n', {})
+end, { desc = 'Copy file link' })
+
+vim.keymap.set('n', '<leader>gY', function()
+  require('gitlinker').get_repo_url()
+end, { desc = 'Copy repo link' })
+
+vim.keymap.set('n', '<leader>gb', function()
+  require('gitlinker').get_buf_range_url('n', { action_callback = require('gitlinker.actions').open_in_browser })
+end, { desc = 'Open file link in browser', silent = true })
+
+vim.keymap.set('v', '<leader>gb', function()
+  require('gitlinker').get_buf_range_url('v', { action_callback = require('gitlinker.actions').open_in_browser })
+end, { desc = 'Open file link in browser', silent = true })
+
+vim.keymap.set('n', '<leader>gB', function()
+  require('gitlinker').get_repo_url { action_callback = require('gitlinker.actions').open_in_browser }
+end, { desc = 'Open repo link in browser', silent = true })
 
 -- Undo tree
 vim.keymap.set('n', '<leader>u', vim.cmd.UndotreeToggle, { desc = 'Toggle Undo tree' })
