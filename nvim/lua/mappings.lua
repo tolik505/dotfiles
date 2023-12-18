@@ -10,6 +10,7 @@ vim.keymap.set('n', 'n', 'nzzzv')
 vim.keymap.set('n', 'N', 'Nzzzv')
 vim.keymap.set('x', '<leader>p', '"_dP', { desc = 'Paste into selection and keep copied value in the register' })
 vim.keymap.set('n', '<leader>rp', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = 'Mass replace word under cursor' })
+vim.keymap.set('n', '<leader>he', [[:vert help  | wincmd L<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>]], { desc = 'Help' })
 
 -- Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
@@ -177,7 +178,7 @@ vim.keymap.set('n', '<leader>di', function()
   require('dap').step_into()
 end, { desc = 'Debug: Step Into' })
 
-vim.keymap.set('n', '<leader>do', function()
+vim.keymap.set('n', '<M-o>', function()
   require('dap').step_over()
 end, { desc = 'Debug: Step Over' })
 

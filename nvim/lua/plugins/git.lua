@@ -37,12 +37,12 @@ return {
     opts = {
       -- See `:help gitsigns.txt`
       signs = {
-        add = { text = ' │' },
-        change = { text = ' │' },
-        delete = { text = ' │' },
+        add = { text = '▐' },
+        change = { text = '▐' },
+        delete = { text = '▐' },
         topdelete = { text = ' ‾' },
         changedelete = { text = ' ~' },
-        untracked = { text = ' ┆' },
+        untracked = { text = ' ╏' },
       },
       on_attach = function(bufnr)
         local gs = package.loaded.gitsigns
