@@ -13,10 +13,12 @@ return {
     { 'antosha417/nvim-lsp-file-operations', opts = {} },
   },
   config = function()
+    local lspconfig = require 'lspconfig'
     local mason_lspconfig = require 'mason-lspconfig'
 
     local servers = {
       gopls = {
+        root_dir = { 'go.mod', '.git' },
         filetypes = { 'go', 'gomod', 'gowork', 'gotmpl' },
         gopls = {
           completeUnimported = true,
@@ -26,9 +28,14 @@ return {
           },
         },
       },
-      tsserver = {},
-      eslint = {},
+      tsserver = {
+        root_dir = { 'package.json', 'node_modules', '.git' },
+      },
+      eslint = {
+        root_dir = { '.eslintrc.js' },
+      },
       lua_ls = {
+        root_dir = { '.git' },
         Lua = {
           diagnostics = {
             globals = { 'vim' },
@@ -92,8 +99,6 @@ return {
       nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
       nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
 
-      -- nmap('ff', vim.lsp.buf.format, 'Format code')
-
       -- See `:help K` for why this keymap
       nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
       nmap('<C-s>', vim.lsp.buf.signature_help, 'Signature Documentation')
@@ -104,11 +109,17 @@ return {
     end
     mason_lspconfig.setup_handlers {
       function(server_name)
-        require('lspconfig')[server_name].setup {
+        lspconfig[server_name].setup {
           capabilities = capabilities,
           on_attach = on_attach,
           settings = servers[server_name],
           filetypes = (servers[server_name] or {}).filetypes,
+          root_dir = function(filename)
+            if servers[server_name].root_dir then
+              return lspconfig.util.root_pattern(servers[server_name].root_dir)(filename)
+            end
+            return nil
+          end,
         }
       end,
     }

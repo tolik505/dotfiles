@@ -37,12 +37,12 @@ return {
             jestConfigFile = function()
               local file = vim.fn.expand '%:p'
               if string.find(file, 'e2e') then
-                local config = string.match(file, '.*/libs/[^/]+') .. '/jest.e2e.config.ts'
+                local config = (string.match(file, '.*/libs/[^/]+') or string.match(file, '.*/api/[^/]+')) .. '/jest.e2e.config.ts'
 
                 return config
               end
 
-              return string.match(file, '.*/libs/[^/]+') .. '/jest.config.ts'
+              return (string.match(file, '.*/libs/[^/]+') or string.match(file, '.*/api/[^/]+')) .. '/jest.config.ts'
             end,
             env = { CI = true },
             cwd = vim.fn.getcwd(),

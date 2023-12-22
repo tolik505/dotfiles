@@ -29,9 +29,9 @@ for package in "${packages[@]}"; do
     brew install $package
 done
 
-echo "Insalling Meslo Nerd Font"
+echo "Insalling JetBrains Nerd Font"
 
-brew tap homebrew/cask-fonts && brew install --cask font-meslo-lg-nerd-font
+brew tap homebrew/cask-fonts && brew install --cask font-jetbrains-mono-nerd-font
 
 echo "Installation complete."
 

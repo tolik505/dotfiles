@@ -19,7 +19,7 @@ return {
               alternate_file = '#', -- Text to show to identify the alternate file
               directory = '', -- Text to show when the buffer is a directory
             },
-          }
+          },
         },
         lualine_c = {},
         lualine_x = {
@@ -33,7 +33,9 @@ return {
               return ''
             end,
           },
-          'encoding', 'fileformat', 'filetype',
+          'encoding',
+          'fileformat',
+          'filetype',
         },
         lualine_z = {
           {
@@ -45,5 +47,5 @@ return {
         },
       },
     }
-  end
+  end,
 }

@@ -7,14 +7,10 @@
 -- kickstart.nvim and not kitchen-sink.nvim ;)
 
 return {
-  -- NOTE: Yes, you can install new plugins here!
   'mfussenegger/nvim-dap',
   lazy = true,
-  -- NOTE: And you can specify dependencies as well
   dependencies = {
-    -- Creates a beautiful debugger UI
     'rcarriga/nvim-dap-ui',
-
     -- Installs the debug adapters for you
     'williamboman/mason.nvim',
     'jay-babu/mason-nvim-dap.nvim',
@@ -26,16 +22,14 @@ return {
   config = function()
     local dap = require 'dap'
     local dapui = require 'dapui'
-    vim.fn.sign_define('DapBreakpoint',
-      { text = ' ', texthl = 'DapBreakpoint', linehl = 'DapBreakpoint', numhl = 'DapBreakpoint' })
+    vim.fn.sign_define('DapBreakpoint', { text = ' ', texthl = 'DapBreakpoint', linehl = 'DapBreakpoint', numhl = 'DapBreakpoint' })
 
-    vim.fn.sign_define('DapStopped',
-      {
-        text = '󰁕 ',
-        texthl = 'DapStopped',
-        linehl = 'DapStopped',
-        numhl = 'DapStopped',
-      })
+    vim.fn.sign_define('DapStopped', {
+      text = '󰁕 ',
+      texthl = 'DapStopped',
+      linehl = 'DapStopped',
+      numhl = 'DapStopped',
+    })
 
     require('mason-nvim-dap').setup {
       -- Makes a best effort to setup the various debuggers with
@@ -54,7 +48,6 @@ return {
       },
     }
 
-
     -- Dap UI setup
     -- For more information, see |:help nvim-dap-ui|
     dapui.setup {
@@ -70,24 +63,24 @@ return {
             --   size = 0.25
             -- },
             {
-              id = "scopes",
-              size = 0.25
-            }
+              id = 'scopes',
+              size = 0.25,
+            },
           },
-          position = "left",
-          size = 40
+          position = 'left',
+          size = 40,
         },
         {
           elements = {
             {
-              id = "console",
-              size = 0.5
-            }
+              id = 'console',
+              size = 0.5,
+            },
           },
-          position = "bottom",
-          size = 10
+          position = 'bottom',
+          size = 10,
         },
-      }
+      },
     }
 
     dap.listeners.after.event_initialized['dapui_config'] = dapui.open
@@ -97,38 +90,32 @@ return {
     -- Install golang specific config
     require('dap-go').setup()
 
-    dap.adapters["pwa-node"] = {
-      type = "server",
-      host = "127.0.0.1",
-      port = 8123,
+    dap.adapters['pwa-node'] = {
+      type = 'server',
+      host = 'localhost',
+      port = '${port}',
       executable = {
-        command = "js-debug-adapter",
-      }
+        command = 'node',
+        -- 💀 Make sure to update this path to point to your installation
+        args = {
+          require('mason-registry').get_package('js-debug-adapter'):get_install_path() .. '/js-debug/src/dapDebugServer.js',
+          '${port}',
+        },
+      },
     }
 
-    for _, language in ipairs { "typescript", "javascript" } do
+    for _, language in ipairs { 'typescript', 'javascript' } do
       dap.configurations[language] = {
         {
-          type = "pwa-node",
-          request = "launch",
-          name = "Debug Jest Tests",
-          -- trace = true, -- include debugger info
-          runtimeExecutable = "node",
-          runtimeArgs = {
-            "./node_modules/jest/bin/jest.js",
-            "--runInBand",
-            "${file}",
-          },
-          sourceMaps = true,
-          rootPath = "${workspaceFolder}",
-          cwd = "${workspaceFolder}",
-          console = "integratedTerminal",
-          internalConsoleOptions = "neverOpen",
-          port = 8123,
+          type = 'pwa-node',
+          request = 'launch',
+          name = 'Launch file',
+          program = '${file}',
+          cwd = '${workspaceFolder}',
         },
       }
     end
 
-    require("nvim-dap-virtual-text").setup()
+    require('nvim-dap-virtual-text').setup()
   end,
 }

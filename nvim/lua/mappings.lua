@@ -198,7 +198,11 @@ vim.keymap.set('n', '<leader>db', function()
   require('dap').toggle_breakpoint()
 end, { desc = 'Debug: Toggle Breakpoint' })
 
-vim.keymap.set('n', '<leader>tdg', function()
+vim.keymap.set('n', '<leader>dB', function()
+  require('dap').clear_breakpoints()
+end, { desc = 'Debug: Clear Breakpoint' })
+
+vim.keymap.set('n', '<leader>dg', function()
   require('dap-go').debug_test()
 end, { desc = 'Debug Nearest Go Test' })
 
