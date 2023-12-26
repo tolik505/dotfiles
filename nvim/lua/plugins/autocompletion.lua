@@ -66,7 +66,7 @@ return {
       },
       formatting = {
         format = lspkind.cmp_format {
-          mode = 'symbol_text',
+          mode = 'symbol',
         },
       },
     }

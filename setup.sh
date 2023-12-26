@@ -21,6 +21,8 @@ packages=(
     bottom
     lsd
     lazydocker
+    broot
+    gnu-sed
 )
 
 # Install each package using Homebrew

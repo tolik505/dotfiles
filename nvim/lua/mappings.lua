@@ -131,6 +131,14 @@ end, { desc = '[S]earch [R]esume' })
 
 vim.keymap.set('n', '<leader>sS', '<Cmd>Telescope persisted<CR>', { desc = '[S]earch [S]essions' })
 
+-- Spectre
+vim.keymap.set('n', '<leader>sp', '<cmd>lua require("spectre").open_visual({select_word=true})<CR>', {
+  desc = 'Search current word',
+})
+vim.keymap.set('v', '<leader>sp', '<esc><cmd>lua require("spectre").open_visual()<CR>', {
+  desc = 'Search current word',
+})
+
 -- Sessions
 vim.keymap.set('n', '<leader>ss', '<Cmd>SessionSave<CR>', { desc = '[S]ave [S]ession' })
 
@@ -210,9 +218,8 @@ vim.keymap.set('n', '<leader>dl', function()
   require('dap').run_last()
 end, { desc = 'Debug Last Test' })
 
--- Neotree
-vim.keymap.set('n', '<leader>n', '<Cmd>Neotree toggle<CR>', { desc = 'Toggle Neotree' })
-vim.keymap.set('n', '<leader>b', '<Cmd>Neotree toggle show buffers right<CR>')
+-- Oil
+vim.keymap.set('n', '<leader>o', '<CMD>Oil<CR>', { desc = 'Open parent directory' })
 
 -- Smart splits
 -- recommended mappings
