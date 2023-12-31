@@ -2,6 +2,7 @@ if status is-interactive
     # Abbreviation
     abbr -a bi brew install
     abbr -a bu brew uninstall
+    abbr -a vi nvim .
     abbr -a d lazydocker
     abbr -a ze zellij
     abbr -a zes zellij -s

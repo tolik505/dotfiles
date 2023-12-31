@@ -140,7 +140,8 @@ vim.keymap.set('v', '<leader>sp', '<esc><cmd>lua require("spectre").open_visual(
 })
 
 -- Sessions
-vim.keymap.set('n', '<leader>ss', '<Cmd>SessionSave<CR>', { desc = '[S]ave [S]ession' })
+vim.keymap.set('n', '<leader>ss', '<Cmd>SessionSave<CR>', { desc = '[S]ession [S]ave' })
+vim.keymap.set('n', '<leader>sl', '<Cmd>SessionLoad<CR>', { desc = '[S]ession [L]oad' })
 
 -- Tests
 vim.keymap.set('n', '<leader>tt', function()

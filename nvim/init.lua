@@ -96,8 +96,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   pattern = '*',
 })
 
-vim.g.indent_blankline_filetype_exclude = { 'dashboard' }
-
 vim.opt.spelllang = 'en_us'
 vim.opt.spell = true
 
