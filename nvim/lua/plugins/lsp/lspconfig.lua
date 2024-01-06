@@ -65,6 +65,21 @@ return {
       graphql = {
         filetypes = { 'graphql', 'gql' },
       },
+      templ = {
+        root_dir = { 'go.mod', '.git' },
+        filetypes = { 'templ' },
+      },
+      tailwindcss = {
+        root_dir = { '.git' },
+        filetypes = {
+          'templ',
+        },
+        init_options = {
+          userLanguages = {
+            templ = 'html',
+          },
+        },
+      },
     }
 
     mason_lspconfig.setup {
@@ -114,6 +129,7 @@ return {
           on_attach = on_attach,
           settings = servers[server_name],
           filetypes = (servers[server_name] or {}).filetypes,
+          init_options = (servers[server_name] or {}).init_options,
           root_dir = function(filename)
             if servers[server_name].root_dir then
               return lspconfig.util.root_pattern(servers[server_name].root_dir)(filename)
@@ -122,6 +138,12 @@ return {
           end,
         }
       end,
+    }
+
+    vim.filetype.add {
+      extension = {
+        templ = 'templ',
+      },
     }
 
     -- Change the Diagnostic symbols in the sign column (gutter)

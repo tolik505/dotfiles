@@ -31,6 +31,8 @@ return {
         'delve',
         'stylua', -- lua formatter
         'eslint_d', -- js linter
+        'templ',
+        'tailwindcss',
       },
     }
   end,
