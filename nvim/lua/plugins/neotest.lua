@@ -7,6 +7,8 @@ return {
       'antoinemadec/FixCursorHold.nvim',
       'nvim-neotest/neotest-go',
       'nvim-neotest/neotest-jest',
+      'olimorris/neotest-phpunit',
+      'mfussenegger/nvim-dap',
     },
     config = function()
       -- get neotest namespace (api call creates or returns namespace)
@@ -27,6 +29,12 @@ return {
             },
             args = { '-count=1', '-timeout=60s' },
           },
+          require 'neotest-phpunit' {
+            env = {
+              XDEBUG_CONFIG = 'idekey=neotest',
+            },
+            dap = require('dap').configurations.php[1],
+          },
           require 'neotest-jest' {
             jest_test_discovery = true,
             jestCommand = function()
@@ -35,14 +43,30 @@ return {
               return 'node ' .. vim.fn.getcwd() .. '/node_modules/jest/bin/jest.js --runInBand --runTestsByPath ' .. file
             end,
             jestConfigFile = function()
-              local file = vim.fn.expand '%:p'
-              if string.find(file, 'e2e') then
-                local config = (string.match(file, '.*/libs/[^/]+') or string.match(file, '.*/api/[^/]+')) .. '/jest.e2e.config.ts'
+              local Path = require 'plenary.path'
 
-                return config
+              function findClosestPath(filename, startFilePath)
+                local startDir = Path:new(startFilePath):parent()
+
+                while startDir.filename ~= '/' do
+                  local filePath = Path:new(startDir.filename, filename)
+
+                  if filePath:exists() then
+                    return filePath:absolute()
+                  end
+
+                  startDir = startDir:parent()
+                end
+
+                return nil
               end
 
-              return (string.match(file, '.*/libs/[^/]+') or string.match(file, '.*/api/[^/]+')) .. '/jest.config.ts'
+              local file = vim.fn.expand '%:p'
+              if string.find(file, 'e2e') then
+                return findClosestPath('jest.e2e.config.ts', file)
+              end
+
+              return findClosestPath('jest.config.ts', file)
             end,
             env = { CI = true },
             cwd = vim.fn.getcwd(),

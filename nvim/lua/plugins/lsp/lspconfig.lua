@@ -34,6 +34,9 @@ return {
       eslint = {
         root_dir = { '.eslintrc.js' },
       },
+      phpactor = {
+        root_dir = { 'composer.json' },
+      },
       lua_ls = {
         root_dir = { '.git' },
         Lua = {

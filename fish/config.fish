@@ -4,6 +4,7 @@ if status is-interactive
     abbr -a bu brew uninstall
     abbr -a vi nvim .
     abbr -a d lazydocker
+    abbr -a prt lsof -i tcp:
     abbr -a ze zellij
     abbr -a zes zellij -s
     abbr -a zel zellij ls
