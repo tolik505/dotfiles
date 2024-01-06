@@ -9,7 +9,7 @@ keybinds clear-defaults=true {
 		// unbind "Ctrl p"
 		unbind "Ctrl o"
 		unbind "Ctrl q"
-		unbind "Ctrl h"
+		// unbind "Ctrl h"
 		// uncomment this and adjust key if using copy_on_select=false
 		// bind "Alt c" { Copy; }
 	}
@@ -48,6 +48,15 @@ keybinds clear-defaults=true {
 		bind "e" { TogglePaneEmbedOrFloating; SwitchToMode "Normal"; }
 		bind "r" { SwitchToMode "RenamePane"; PaneNameInput 0;}
 	}
+        move {
+      		bind "Ctrl h" { SwitchToMode "Normal"; }
+      		bind "n" "Tab" { MovePane; }
+      		bind "p" { MovePaneBackwards; }
+      		bind "h" "Left" { MovePane "Left"; }
+      		bind "j" "Down" { MovePane "Down"; }
+      		bind "k" "Up" { MovePane "Up"; }
+      		bind "l" "Right" { MovePane "Right"; }
+      	}
 	tab {
 		bind "Ctrl b" { SwitchToMode "Normal"; }
 		bind "r" { SwitchToMode "RenameTab"; TabNameInput 0; }
@@ -149,6 +158,9 @@ keybinds clear-defaults=true {
 	}
 	shared_except "pane" "locked" {
 		bind "Ctrl p" { SwitchToMode "Pane"; }
+	}
+	shared_except "move" "locked" {
+		bind "Ctrl h" { SwitchToMode "Move"; }
 	}
 	shared_except "resize" "locked" {
 		bind "Ctrl n" { SwitchToMode "Resize"; }
