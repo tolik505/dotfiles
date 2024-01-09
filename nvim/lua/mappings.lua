@@ -270,6 +270,7 @@ vim.keymap.set('n', '<leader>oc', '<Cmd>Neorg return<CR>', { desc = 'Close Neorg
 -- Noice
 vim.keymap.set('n', '<leader>nl', '<Cmd>Noice last<CR>', { desc = 'Last Noice message' })
 vim.keymap.set('n', '<leader>nh', '<Cmd>Noice history<CR>', { desc = 'Noice history' })
+vim.keymap.set('n', '<leader>nd', '<Cmd>Noice dismiss<CR>', { desc = 'Noice dismiss' })
 
 -- Using ufo provider need remap `zR` and `zM`. If Neovim is 0.6.1, remap yourself
 vim.keymap.set('n', 'zR', function()
