@@ -11,6 +11,7 @@ vim.keymap.set('n', 'N', 'Nzzzv')
 vim.keymap.set('x', '<leader>p', '"_dP', { desc = 'Paste into selection and keep copied value in the register' })
 vim.keymap.set('n', '<leader>rp', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = 'Mass replace word under cursor' })
 vim.keymap.set('n', '<leader>he', [[:vert help  | wincmd L<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>]], { desc = 'Help' })
+vim.keymap.set('n', '<leader>fp', '<cmd>echo @%<CR>', { desc = 'Show file path' })
 
 -- Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
@@ -25,6 +26,8 @@ vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous dia
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
 vim.keymap.set('n', '<leader>fd', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
 vim.keymap.set('n', '<leader>ld', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
+vim.keymap.set('n', '<leader>ed', vim.diagnostic.enable, { desc = 'Enable diagnostics' })
+vim.keymap.set('n', '<leader>dd', vim.diagnostic.disable, { desc = 'Disable diagnostics' })
 
 -- Diffview
 vim.keymap.set('n', '<leader>dfo', '<Cmd>DiffviewOpen<CR>', { desc = 'Open diff view' })
