@@ -12,6 +12,7 @@ vim.keymap.set('x', '<leader>p', '"_dP', { desc = 'Paste into selection and keep
 vim.keymap.set('n', '<leader>rp', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = 'Mass replace word under cursor' })
 vim.keymap.set('n', '<leader>he', [[:vert help  | wincmd L<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>]], { desc = 'Help' })
 vim.keymap.set('n', '<leader>fp', '<cmd>echo @%<CR>', { desc = 'Show file path' })
+vim.keymap.set('n', '<leader>ee', 'oif err != nil {<CR>}<Esc>Oreturn err<Esc>')
 
 -- Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
@@ -41,17 +42,17 @@ vim.keymap.set('n', '<leader>qa', '<Cmd>%bd <bar> e# <bar> bd# <CR>', { desc = '
 vim.keymap.set('n', '<leader>bn', '<Cmd>enew<CR>', { desc = 'Create empty buffer' })
 
 -- Harpoon
-vim.keymap.set('n', '<C-a>', function()
+vim.keymap.set('n', '<leader>a', function()
   require('harpoon.mark').add_file()
 end, { desc = 'Add buffer to harpoon' })
 
-vim.keymap.set('n', '<C-j>', function()
-  require('harpoon.ui').nav_next()
-end, { desc = 'Next harpoon buffer' })
+-- vim.keymap.set('n', '<C-j>', function()
+-- require('harpoon.ui').nav_next()
+-- end, { desc = 'Next harpoon buffer' })
 
-vim.keymap.set('n', '<C-k>', function()
-  require('harpoon.ui').nav_prev()
-end, { desc = 'Previous harpoon buffer' })
+-- vim.keymap.set('n', '<C-k>', function()
+-- require('harpoon.ui').nav_prev()
+-- end, { desc = 'Previous harpoon buffer' })
 
 vim.keymap.set('n', '<leader>x', function()
   require('harpoon.mark').rm_file()
@@ -65,23 +66,23 @@ vim.keymap.set('n', '<leader>e', function()
   require('harpoon.ui').toggle_quick_menu()
 end, { desc = 'Toggle harpoon quick menu' })
 
-vim.keymap.set('n', '<leader>1', function()
+vim.keymap.set('n', '<C-j>', function()
   require('harpoon.ui').nav_file(1)
 end, { desc = 'Navigate to harpoon buffer 1' })
 
-vim.keymap.set('n', '<leader>2', function()
+vim.keymap.set('n', '<C-k>', function()
   require('harpoon.ui').nav_file(2)
 end, { desc = 'Navigate to harpoon buffer 2' })
 
-vim.keymap.set('n', '<leader>3', function()
+vim.keymap.set('n', '<C-m>', function()
   require('harpoon.ui').nav_file(3)
 end, { desc = 'Navigate to harpoon buffer 3' })
 
-vim.keymap.set('n', '<leader>4', function()
+vim.keymap.set('n', '<C-n>', function()
   require('harpoon.ui').nav_file(4)
 end, { desc = 'Navigate to harpoon buffer 4' })
 
-vim.keymap.set('n', '<leader>5', function()
+vim.keymap.set('n', '<C-p>', function()
   require('harpoon.ui').nav_file(5)
 end, { desc = 'Navigate to harpoon buffer 5' })
 
@@ -221,6 +222,33 @@ end, { desc = 'Debug Nearest Go Test' })
 vim.keymap.set('n', '<leader>dl', function()
   require('dap').run_last()
 end, { desc = 'Debug Last Test' })
+
+-- Diagnostic
+vim.keymap.set('n', '<leader>xx', function()
+  require('trouble').toggle()
+end, { desc = 'Toggle diagnostics' })
+vim.keymap.set('n', '<leader>xn', function()
+  require('trouble').next { skip_groups = true, jump = true }
+end, { desc = 'Next diagnostic' })
+vim.keymap.set('n', '<leader>xp', function()
+  require('trouble').previous { skip_groups = true, jump = true }
+end, { desc = 'Next diagnostic' })
+vim.keymap.set('n', '<leader>xw', function()
+  require('trouble').toggle 'workspace_diagnostics'
+end, { desc = 'Workspace diagnostics' })
+vim.keymap.set('n', '<leader>xd', function()
+  require('trouble').toggle 'document_diagnostics'
+end, { desc = 'Document diagnostics' })
+vim.keymap.set('n', 'gR', function()
+  require('trouble').toggle 'lsp_references'
+end)
+
+-- Flutter
+vim.keymap.set('n', '<leader>fr', '<CMD>FlutterRun<CR>', { desc = 'Flutter Run' })
+vim.keymap.set('n', '<leader>fo', '<CMD>FlutterReload<CR>', { desc = 'Flutter Reload' })
+vim.keymap.set('n', '<leader>fs', '<CMD>FlutterRestart<CR>', { desc = 'Flutter Restart' })
+vim.keymap.set('n', '<leader>fq', '<CMD>FlutterQuit<CR>', { desc = 'Flutter Quit' })
+vim.keymap.set('n', '<leader>fe', '<CMD>FlutterEmulators<CR>', { desc = 'Flutter Emulators' })
 
 -- Oil
 vim.keymap.set('n', '<leader>o', '<CMD>Oil<CR>', { desc = 'Open parent directory' })

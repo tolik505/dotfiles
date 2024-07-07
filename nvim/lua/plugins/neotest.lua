@@ -63,7 +63,7 @@ return {
 
               local file = vim.fn.expand '%:p'
               if string.find(file, 'e2e') then
-                return findClosestPath('jest.e2e.config.ts', file)
+                return findClosestPath('jest-e2e.json', file)
               end
 
               return findClosestPath('jest.config.ts', file)

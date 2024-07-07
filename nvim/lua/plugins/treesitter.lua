@@ -27,6 +27,7 @@ return {
           'markdown',
           'markdown_inline',
           'regex',
+          'terraform',
         },
 
         -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
@@ -83,9 +84,9 @@ return {
           },
           swap = {
             enable = true,
-            swap_next = { ['<leader>a'] = '@parameter.inner' },
+            swap_next = { ['<leader>b'] = '@parameter.inner' },
             swap_previous = {
-              ['<leader>A'] = '@parameter.inner',
+              ['<leader>B'] = '@parameter.inner',
             },
           },
         },

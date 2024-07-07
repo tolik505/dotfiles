@@ -43,7 +43,7 @@ done < "fish/fish_plugins"
 
 echo "Insalling JetBrains Nerd Font"
 
-brew tap homebrew/cask-fonts && brew install --cask font-jetbrains-mono-nerd-font
+brew install --cask font-jetbrains-mono-nerd-font
 
 echo "Installation complete."
 

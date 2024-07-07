@@ -70,16 +70,16 @@ return {
           position = 'left',
           size = 40,
         },
-        -- {
-        --   elements = {
-        --     {
-        --       id = 'console',
-        --       size = 0.5,
-        --     },
-        --   },
-        --   position = 'bottom',
-        --   size = 10,
-        -- },
+        {
+          elements = {
+            {
+              id = 'console',
+              size = 0.5,
+            },
+          },
+          position = 'bottom',
+          size = 10,
+        },
       },
     }
 

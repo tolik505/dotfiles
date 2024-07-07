@@ -29,14 +29,14 @@ return {
         },
       },
       tsserver = {
-        root_dir = { 'package.json', 'node_modules', '.git' },
+        filetypes = { 'graphql', 'gql' },
       },
       eslint = {
         root_dir = { '.eslintrc.js' },
       },
-      phpactor = {
-        root_dir = { 'composer.json' },
-      },
+      -- phpactor = {
+      -- root_dir = { 'composer.json' },
+      -- },
       lua_ls = {
         root_dir = { '.git' },
         Lua = {
@@ -64,6 +64,9 @@ return {
             schemas = require('schemastore').yaml.schemas(),
           },
         },
+      },
+      terraformls = {
+        filetypes = { 'terraform', 'terraform-vars', 'tf' },
       },
       graphql = {
         filetypes = { 'graphql', 'gql' },
@@ -141,6 +144,21 @@ return {
           end,
         }
       end,
+    }
+
+    lspconfig.dartls.setup {
+      on_attach = on_attach,
+      capabilities = capabilities,
+      settings = {
+        dart = {
+          showTodos = true,
+          completeFunctionCalls = true,
+          renameFilesWithClasses = 'prompt',
+          enableSnippets = true,
+          updateImportsOnRename = true,
+          enableSdkFormatter = true,
+        },
+      },
     }
 
     vim.filetype.add {
