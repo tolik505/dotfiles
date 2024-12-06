@@ -1,4 +1,4 @@
-# Dotfiles and cool packages to improve development performance
+# Dotfiles and cool packages to improve development performance (MacOS)
 
 ### Installation
 
@@ -16,14 +16,8 @@ cd dotfiles && ./setup.sh
 
 This step will install necessary packages (for MacOS) and create simlinks to configs in your home directory.
 
-3. Switch your default shell to [fish](https://github.com/fish-shell/fish-shell#switching-to-fish) (optional)
+3. Switch your default shell to [nushell](https://www.nushell.sh/book/default_shell.html#setting-nu-as-default-shell-on-your-terminal) (optional)
 
-4. Open the fish shell and run 
-```bash
-tide configure
-```
+4. Add /opt/homebrew/bin to PATH if needed.
 
-5. Add /opt/homebrew/bin to PATH:
-```bash
-fish_add_path /opt/homebrew/bin
-```
+5. Inside tmux install plugins 'Alt+j Ctrl+I'

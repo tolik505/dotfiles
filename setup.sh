@@ -9,11 +9,14 @@ fi
 # List of packages to install
 packages=(
     wezterm
-    fish
+    starship
+    nu
+    carapace
+    tmux
     nvim
     node
     zellij
-    z
+    zoxide
     stow
     fzf
     ripgrep
@@ -31,15 +34,6 @@ for package in "${packages[@]}"; do
     echo "Installing $package..."
     brew install $package
 done
-
-echo "Insalling Fisher"
-curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
-
-# Read each line from the file and run fisher install for each plugin
-while IFS= read -r plugin; do
-  echo "Installing $plugin..."
-  fish -c "fisher install $plugin"
-done < "fish/fish_plugins"
 
 echo "Insalling JetBrains Nerd Font"
 

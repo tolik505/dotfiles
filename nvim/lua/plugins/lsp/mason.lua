@@ -33,6 +33,8 @@ return {
         'eslint_d', -- js linter
         'templ',
         'tailwindcss',
+        'sqlls',
+        'buf-language-server',
       },
     }
   end,

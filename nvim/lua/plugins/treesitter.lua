@@ -5,6 +5,7 @@ return {
   dependencies = {
     'nvim-treesitter/nvim-treesitter-textobjects',
     'RRethy/nvim-treesitter-textsubjects',
+    { 'nushell/tree-sitter-nu', build = ':TSUpdate nu' },
   },
   build = ':TSUpdate',
   init = function()
@@ -38,10 +39,10 @@ return {
         incremental_selection = {
           enable = true,
           keymaps = {
-            init_selection = '<c-space>',
-            node_incremental = '<c-space>',
-            scope_incremental = '<c-s>',
-            node_decremental = '<M-space>',
+            init_selection = '<M-space>',
+            node_incremental = '<M-space>',
+            scope_incremental = '<M-bs>',
+            node_decremental = '<bs>',
           },
         },
         textobjects = {

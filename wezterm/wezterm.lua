@@ -39,4 +39,7 @@ return {
 			action = wezterm.action.OpenLinkAtMouseCursor,
 		},
 	},
+	set_environment_variables = {
+		XDG_CONFIG_HOME = "/Users/anatolii/.config",
+	},
 }

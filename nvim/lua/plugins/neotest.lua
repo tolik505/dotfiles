@@ -3,9 +3,11 @@ return {
     'nvim-neotest/neotest',
     lazy = true,
     dependencies = {
+      'nvim-neotest/nvim-nio',
       'nvim-lua/plenary.nvim',
       'antoinemadec/FixCursorHold.nvim',
-      'nvim-neotest/neotest-go',
+      'nvim-treesitter/nvim-treesitter',
+      { 'fredrikaverpil/neotest-golang', version = '*' },
       'nvim-neotest/neotest-jest',
       'olimorris/neotest-phpunit',
       'mfussenegger/nvim-dap',
@@ -23,11 +25,14 @@ return {
       }, neotest_ns)
       require('neotest').setup {
         adapters = {
-          require 'neotest-go' {
-            experimental = {
-              test_table = true,
+          require 'neotest-golang' {
+            go_test_args = {
+              '-v',
+              -- '-race',
+              '-coverprofile='
+                .. vim.fn.getcwd()
+                .. '/coverage.out',
             },
-            args = { '-count=1', '-timeout=60s' },
           },
           require 'neotest-phpunit' {
             env = {

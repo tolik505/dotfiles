@@ -71,6 +71,14 @@ return {
       graphql = {
         filetypes = { 'graphql', 'gql' },
       },
+      sqlls = {
+        root_dir = { '.sqllsrc.json' },
+        filetypes = { 'sql', 'mysql' },
+      },
+      bufls = {
+        filetypes = { 'proto' },
+        root_dir = { '.git' },
+      },
       templ = {
         root_dir = { 'go.mod', '.git' },
         filetypes = { 'templ' },
