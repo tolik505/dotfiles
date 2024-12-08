@@ -13,6 +13,7 @@ packages=(
     nu
     carapace
     tmux
+    lazygit
     nvim
     node
     zellij

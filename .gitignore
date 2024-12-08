@@ -3,3 +3,4 @@ fish/fish_variables
 fish/functions
 fish/completions
 fish/conf.d
+.DS_Store

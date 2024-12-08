@@ -3,7 +3,7 @@ return {
 	color_scheme = "Catppuccin Mocha",
 	enable_tab_bar = false,
 	font = wezterm.font("JetBrainsMono Nerd Font"),
-	font_size = 15.5,
+	font_size = 16.0,
 	macos_window_background_blur = 30,
 	native_macos_fullscreen_mode = false,
 	-- background = {
@@ -22,7 +22,8 @@ return {
 	-- 		},
 	-- 	},
 	-- },
-	window_background_opacity = 0.85,
+	-- window_background_opacity = 0.85,
+	window_background_opacity = 0.92,
 	window_decorations = "RESIZE",
 	-- keys = {
 	-- 	{
