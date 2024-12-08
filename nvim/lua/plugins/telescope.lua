@@ -17,7 +17,7 @@ return {
       end,
     },
   },
-  optional = true,
+  -- optional = true,
   config = function()
     -- [[ Configure Telescope ]]
     -- See `:help telescope` and `:help telescope.setup()`

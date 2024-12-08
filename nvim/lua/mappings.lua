@@ -312,9 +312,13 @@ vim.keymap.set('n', '<leader>oi', '<Cmd>Neorg index<CR>', { desc = 'Open Neorg i
 vim.keymap.set('n', '<leader>oc', '<Cmd>Neorg return<CR>', { desc = 'Close Neorg' })
 
 -- Noice
-vim.keymap.set('n', '<leader>nl', '<Cmd>Noice last<CR>', { desc = 'Last Noice message' })
-vim.keymap.set('n', '<leader>nh', '<Cmd>Noice history<CR>', { desc = 'Noice history' })
-vim.keymap.set('n', '<leader>nd', '<Cmd>Noice dismiss<CR>', { desc = 'Noice dismiss' })
+vim.keymap.set('n', '<leader>nl', '<Cmd>Noice last<CR>', { desc = 'Last notification' })
+vim.keymap.set('n', '<leader>nh', function()
+  Snacks.notifier.show_history()
+end, { desc = 'Notifications history' })
+vim.keymap.set('n', '<leader>nd', function()
+  Snacks.notifier.hide()
+end, { desc = 'Notifications dismiss' })
 
 -- Using ufo provider need remap `zR` and `zM`. If Neovim is 0.6.1, remap yourself
 vim.keymap.set('n', 'zR', function()
@@ -325,7 +329,9 @@ vim.keymap.set('n', 'zM', function()
 end, { desc = 'Close all folds' })
 
 -- Git
-vim.keymap.set('n', '<leader>g', '<Cmd>Neogit<CR>', { desc = 'Open Neogit' })
+vim.keymap.set('n', '<leader>g', function()
+  Snacks.lazygit()
+end, { desc = 'Open Lazygit' })
 
 vim.keymap.set('n', '<leader>gy', function()
   require('gitlinker').get_buf_range_url('n', {})
