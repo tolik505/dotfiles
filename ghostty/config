@@ -1,0 +1,15 @@
+theme = catppuccin-mocha
+font-size = 16
+mouse-hide-while-typing = true
+window-save-state = always
+# window-decoration = false
+macos-titlebar-style = hidden
+macos-option-as-alt = true
+background-opacity = 0.93
+background-blur-radius = 30 
+
+# Key bindings
+keybind = global:cmd+/=toggle_quick_terminal
+keybind = global:cmd+i=toggle_visibility
+keybind = global:cmd+b=toggle_fullscreen
+keybind = global:cmd+r=reload_config

@@ -8,7 +8,8 @@ fi
 
 # List of packages to install
 packages=(
-    wezterm
+    # ghostty
+    # wezterm
     starship
     nu
     carapace

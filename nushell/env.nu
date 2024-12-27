@@ -107,7 +107,9 @@ $env.PATH = (
   | append ($env.HOME | path join go bin)
   | append ($env.HOME | path join work flutter bin)
   | append ($env.HOME | path join .cargo bin)
+  | append ($env.HOME | path join .pub-cache bin)
   | append /Applications/Docker.app/Contents/Resources/bin
+  | append /usr/local/bin
   | uniq # filter so the paths are unique
 )
 

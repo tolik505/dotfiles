@@ -17,7 +17,12 @@ return {
 
     -- Add your own debuggers here
     'leoluz/nvim-dap-go',
-    'theHamsta/nvim-dap-virtual-text',
+    {
+      'ltheHlamsta/nvim-dap-virtual-text',
+      config = function()
+        require('nvim-dap-virtual-text').setup()
+      end,
+    },
   },
   config = function()
     local dap = require 'dap'
@@ -140,7 +145,5 @@ return {
         },
       },
     }
-
-    require('nvim-dap-virtual-text').setup()
   end,
 }

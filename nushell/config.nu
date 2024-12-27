@@ -903,6 +903,7 @@ $env.config = {
 alias vi = nvim 
 alias ll = ls -l 
 alias d = lazydocker
+alias k = kubectl
 alias tm = tmux new -s
 alias tma = tmux attach-session
 alias tmk = tmux kill-session

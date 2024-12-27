@@ -27,3 +27,7 @@ if status is-interactive
     # Set the visual mode cursor to a blinking block
     set fish_cursor_visual block blink
 end
+
+### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
+set --export --prepend PATH "/Users/anatolii/.rd/bin"
+### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
