@@ -14,6 +14,7 @@ packages=(
     nu
     carapace
     tmux
+    atuin
     lazygit
     nvim
     node

@@ -18,7 +18,7 @@ return {
     -- Add your own debuggers here
     'leoluz/nvim-dap-go',
     {
-      'ltheHlamsta/nvim-dap-virtual-text',
+      'theHamsta/nvim-dap-virtual-text',
       config = function()
         require('nvim-dap-virtual-text').setup()
       end,
@@ -27,7 +27,12 @@ return {
   config = function()
     local dap = require 'dap'
     local dapui = require 'dapui'
-    vim.fn.sign_define('DapBreakpoint', { text = ' ', texthl = 'DapBreakpoint', linehl = 'DapBreakpoint', numhl = 'DapBreakpoint' })
+    vim.fn.sign_define('DapBreakpoint', {
+      text = ' ',
+      texthl = 'DapBreakpoint',
+      linehl = 'DapBreakpoint',
+      numhl = 'DapBreakpoint',
+    })
 
     vim.fn.sign_define('DapStopped', {
       text = '󰁕 ',

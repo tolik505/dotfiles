@@ -2,14 +2,22 @@ theme = catppuccin-mocha
 font-size = 16
 mouse-hide-while-typing = true
 window-save-state = always
+title = " "
 # window-decoration = false
-macos-titlebar-style = hidden
+# macos-titlebar-style = hidden
+macos-titlebar-proxy-icon=hidden
 macos-option-as-alt = true
-background-opacity = 0.93
-background-blur-radius = 30 
+background-opacity = 0.69
+background-blur-radius = 10 
 
 # Key bindings
 keybind = global:cmd+/=toggle_quick_terminal
 keybind = global:cmd+i=toggle_visibility
-keybind = global:cmd+b=toggle_fullscreen
-keybind = global:cmd+r=reload_config
+keybind = all:cmd+r=reload_config
+keybind = all:cmd+z=toggle_split_zoom
+keybind = all:cmd+shift+h=goto_split:left
+keybind = all:cmd+shift+j=goto_split:bottom
+keybind = all:cmd+shift+k=goto_split:top
+keybind = all:cmd+shift+l=goto_split:right
+keybind = cmd+k=close_surface
+

@@ -922,3 +922,4 @@ use ~/.cache/starship/init.nu
 source ~/.zoxide.nu
 
 source ~/.cache/carapace/init.nu
+source ~/.local/share/atuin/init.nu

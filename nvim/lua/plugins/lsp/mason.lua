@@ -34,7 +34,7 @@ return {
         'templ',
         'tailwindcss',
         'sqlls',
-        'buf-language-server',
+        'buf',
       },
     }
   end,

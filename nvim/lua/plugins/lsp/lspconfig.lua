@@ -28,9 +28,6 @@ return {
           },
         },
       },
-      tsserver = {
-        filetypes = { 'graphql', 'gql' },
-      },
       eslint = {
         root_dir = { '.eslintrc.js' },
       },
@@ -74,10 +71,6 @@ return {
       sqlls = {
         root_dir = { '.sqllsrc.json' },
         filetypes = { 'sql', 'mysql' },
-      },
-      bufls = {
-        filetypes = { 'proto' },
-        root_dir = { '.git' },
       },
       templ = {
         root_dir = { 'go.mod', '.git' },
@@ -154,20 +147,20 @@ return {
       end,
     }
 
-    lspconfig.dartls.setup {
-      on_attach = on_attach,
-      capabilities = capabilities,
-      settings = {
-        dart = {
-          showTodos = true,
-          completeFunctionCalls = true,
-          renameFilesWithClasses = 'prompt',
-          enableSnippets = true,
-          updateImportsOnRename = true,
-          enableSdkFormatter = true,
-        },
-      },
-    }
+    -- lspconfig.dartls.setup {
+    --   on_attach = on_attach,
+    --   capabilities = capabilities,
+    --   settings = {
+    --     dart = {
+    --       showTodos = true,
+    --       completeFunctionCalls = true,
+    --       renameFilesWithClasses = 'prompt',
+    --       enableSnippets = true,
+    --       updateImportsOnRename = true,
+    --       enableSdkFormatter = true,
+    --     },
+    --   },
+    -- }
 
     vim.filetype.add {
       extension = {

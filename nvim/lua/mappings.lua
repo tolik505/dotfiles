@@ -62,9 +62,11 @@ vim.keymap.set('n', '<leader>xa', function()
   require('harpoon.mark').clear_all()
 end, { desc = 'Clear all buffers from harpoon' })
 
-vim.keymap.set('n', '<leader>e', function()
+vim.keymap.set('n', '<leader>hm', function()
   require('harpoon.ui').toggle_quick_menu()
 end, { desc = 'Toggle harpoon quick menu' })
+
+vim.keymap.set('n', '<leader>e', '<Cmd>Telescope harpoon marks<CR>', { desc = 'Toggle harpoon in telescope' })
 
 vim.keymap.set('n', '<C-j>', function()
   require('harpoon.ui').nav_file(1)
@@ -139,10 +141,16 @@ vim.keymap.set('n', '<leader>sS', '<Cmd>Telescope persisted<CR>', { desc = '[S]e
 vim.keymap.set('n', '<leader>S', '<cmd>lua require("spectre").toggle()<CR>', {
   desc = 'Toggle Spectre',
 })
-vim.keymap.set('n', '<leader>sp', '<cmd>lua require("spectre").open_visual({select_word=true})<CR>', {
+vim.keymap.set('n', '<leader>sp', '<cmd>lua require("spectre").open_file_search({select_word=true})<CR>', {
+  desc = 'Search on current file',
+})
+vim.keymap.set('v', '<leader>sp', '<esc><cmd>lua require("spectre").open_file_search()<CR>', {
+  desc = 'Search current word on current file',
+})
+vim.keymap.set('n', '<leader>sP', '<cmd>lua require("spectre").open_visual({select_word=true})<CR>', {
   desc = 'Search current word',
 })
-vim.keymap.set('v', '<leader>sp', '<esc><cmd>lua require("spectre").open_visual()<CR>', {
+vim.keymap.set('v', '<leader>sP', '<esc><cmd>lua require("spectre").open_visual()<CR>', {
   desc = 'Search current word',
 })
 

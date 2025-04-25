@@ -110,6 +110,7 @@ $env.PATH = (
   | append ($env.HOME | path join .pub-cache bin)
   | append /Applications/Docker.app/Contents/Resources/bin
   | append /usr/local/bin
+  | append /opt/podman/bin
   | uniq # filter so the paths are unique
 )
 
