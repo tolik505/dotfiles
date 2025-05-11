@@ -28,6 +28,9 @@ return {
           },
         },
       },
+      pyright = {
+        root_dir = { 'pyproject.toml', '.git' },
+      },
       eslint = {
         root_dir = { '.eslintrc.js' },
       },

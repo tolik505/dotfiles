@@ -17,6 +17,7 @@ return {
         -- Add languages to be installed here that you want installed for treesitter
         ensure_installed = {
           'go',
+          'python',
           'templ',
           'lua',
           'javascript',
@@ -33,7 +34,7 @@ return {
         },
 
         -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
-        auto_install = false,
+        auto_install = true,
 
         highlight = { enable = true },
         indent = { enable = true },

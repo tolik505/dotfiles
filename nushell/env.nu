@@ -108,6 +108,7 @@ $env.PATH = (
   | append ($env.HOME | path join work flutter bin)
   | append ($env.HOME | path join .cargo bin)
   | append ($env.HOME | path join .pub-cache bin)
+  | append ($env.HOME | path join .local bin)
   | append /Applications/Docker.app/Contents/Resources/bin
   | append /usr/local/bin
   | append /opt/podman/bin

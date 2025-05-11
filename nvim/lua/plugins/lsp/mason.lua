@@ -29,6 +29,7 @@ return {
         'prettier',
         'js-debug-adapter',
         'delve',
+        'debugpy',
         'stylua', -- lua formatter
         'eslint_d', -- js linter
         'templ',

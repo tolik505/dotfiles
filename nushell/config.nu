@@ -904,6 +904,7 @@ alias vi = nvim
 alias ll = ls -l 
 alias d = lazydocker
 alias k = kubectl
+alias py = /opt/homebrew/bin/python3
 alias tm = tmux new -s
 alias tma = tmux attach-session
 alias tmk = tmux kill-session

@@ -9,6 +9,7 @@ return {
       'nvim-treesitter/nvim-treesitter',
       { 'fredrikaverpil/neotest-golang', version = '*' },
       'nvim-neotest/neotest-jest',
+      'nvim-neotest/neotest-python',
       'olimorris/neotest-phpunit',
       'mfussenegger/nvim-dap',
     },
@@ -47,6 +48,7 @@ return {
                 .. '/coverage.out',
             },
           },
+          require 'neotest-python',
           require 'neotest-phpunit' {
             env = {
               XDEBUG_CONFIG = 'idekey=neotest',
