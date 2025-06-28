@@ -40,8 +40,13 @@ return {
         },
         adapters = {
           require 'neotest-golang' {
+            testify_enabled = true,
+            experimental = {
+              test_table = true,
+            },
             go_test_args = {
               '-v',
+              '-tags=integration unit',
               -- '-race',
               '-coverprofile='
                 .. vim.fn.getcwd()
@@ -49,48 +54,48 @@ return {
             },
           },
           require 'neotest-python',
-          require 'neotest-phpunit' {
-            env = {
-              XDEBUG_CONFIG = 'idekey=neotest',
-            },
-            dap = require('dap').configurations.php[1],
-          },
-          require 'neotest-jest' {
-            jest_test_discovery = true,
-            jestCommand = function()
-              local file = vim.fn.expand '%:p'
-
-              return 'node ' .. vim.fn.getcwd() .. '/node_modules/jest/bin/jest.js --runInBand --runTestsByPath ' .. file
-            end,
-            jestConfigFile = function()
-              local Path = require 'plenary.path'
-
-              function findClosestPath(filename, startFilePath)
-                local startDir = Path:new(startFilePath):parent()
-
-                while startDir.filename ~= '/' do
-                  local filePath = Path:new(startDir.filename, filename)
-
-                  if filePath:exists() then
-                    return filePath:absolute()
-                  end
-
-                  startDir = startDir:parent()
-                end
-
-                return nil
-              end
-
-              local file = vim.fn.expand '%:p'
-              if string.find(file, 'e2e') then
-                return findClosestPath('jest-e2e.json', file)
-              end
-
-              return findClosestPath('jest.config.ts', file)
-            end,
-            env = { CI = true },
-            cwd = vim.fn.getcwd(),
-          },
+          -- require 'neotest-phpunit' {
+          --   env = {
+          --     XDEBUG_CONFIG = 'idekey=neotest',
+          --   },
+          --   dap = require('dap').configurations.php[1],
+          -- },
+          -- require 'neotest-jest' {
+          --   jest_test_discovery = true,
+          --   jestCommand = function()
+          --     local file = vim.fn.expand '%:p'
+          --
+          --     return 'node ' .. vim.fn.getcwd() .. '/node_modules/jest/bin/jest.js --runInBand --runTestsByPath ' .. file
+          --   end,
+          --   jestConfigFile = function()
+          --     local Path = require 'plenary.path'
+          --
+          --     function findClosestPath(filename, startFilePath)
+          --       local startDir = Path:new(startFilePath):parent()
+          --
+          --       while startDir.filename ~= '/' do
+          --         local filePath = Path:new(startDir.filename, filename)
+          --
+          --         if filePath:exists() then
+          --           return filePath:absolute()
+          --         end
+          --
+          --         startDir = startDir:parent()
+          --       end
+          --
+          --       return nil
+          --     end
+          --
+          --     local file = vim.fn.expand '%:p'
+          --     if string.find(file, 'e2e') then
+          --       return findClosestPath('jest-e2e.json', file)
+          --     end
+          --
+          --     return findClosestPath('jest.config.ts', file)
+          --   end,
+          --   env = { CI = true },
+          --   cwd = vim.fn.getcwd(),
+          -- },
         },
       }
     end,

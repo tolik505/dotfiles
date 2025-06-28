@@ -46,6 +46,7 @@ return {
       -- Makes a best effort to setup the various debuggers with
       -- reasonable debug configurations
       automatic_setup = true,
+      automatic_installation = true,
 
       -- You can provide additional configuration to the handlers,
       -- see mason-nvim-dap README for more information
@@ -100,22 +101,26 @@ return {
     dap.listeners.before.event_exited['dapui_config'] = dapui.close
 
     -- Install golang specific config
-    require('dap-go').setup()
-    require('dap-python').setup 'uv'
-
-    dap.adapters['pwa-node'] = {
-      type = 'server',
-      host = 'localhost',
-      port = '${port}',
-      executable = {
-        command = 'node',
-        -- 💀 Make sure to update this path to point to your installation
-        args = {
-          require('mason-registry').get_package('js-debug-adapter'):get_install_path() .. '/js-debug/src/dapDebugServer.js',
-          '${port}',
-        },
+    require('dap-go').setup {
+      delve = {
+        build_flags = { '-tags=integration' },
       },
     }
+    require('dap-python').setup 'uv'
+
+    -- dap.adapters['pwa-node'] = {
+    --   type = 'server',
+    --   host = 'localhost',
+    --   port = '${port}',
+    --   executable = {
+    --     command = 'node',
+    --     -- 💀 Make sure to update this path to point to your installation
+    --     args = {
+    --       require('mason-registry').get_package('js-debug-adapter'):get_install_path() .. '/js-debug/src/dapDebugServer.js',
+    --       '${port}',
+    --     },
+    --   },
+    -- }
 
     for _, language in ipairs { 'typescript', 'javascript' } do
       dap.configurations[language] = {
