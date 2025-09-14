@@ -26,7 +26,7 @@ packages=(
     bat
     fd
     bottom
-    # lsd
+    lsd
     lazydocker
     broot
     gnu-sed
