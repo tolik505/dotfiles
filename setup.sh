@@ -8,7 +8,7 @@ fi
 
 # List of packages to install
 packages=(
-    # ghostty
+    ghostty
     # wezterm
     starship
     nu
@@ -18,7 +18,7 @@ packages=(
     lazygit
     nvim
     node
-    zellij
+    # zellij
     zoxide
     stow
     fzf
@@ -26,10 +26,12 @@ packages=(
     bat
     fd
     bottom
-    lsd
+    # lsd
     lazydocker
     broot
     gnu-sed
+    sesh
+    yazi
 )
 
 # Install each package using Homebrew

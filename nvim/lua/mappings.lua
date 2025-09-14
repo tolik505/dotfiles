@@ -38,7 +38,7 @@ vim.keymap.set('n', '<leader>dfc', '<Cmd>DiffviewClose<CR>', { desc = 'Close dif
 vim.keymap.set('n', '<C-l>', '<Cmd>bn<CR>', { desc = 'Next buffer' })
 vim.keymap.set('n', '<C-h>', '<Cmd>bp<CR>', { desc = 'Previous buffer' })
 vim.keymap.set('n', '<leader>q', '<Cmd>bd<CR>', { desc = 'Close buffer' })
-vim.keymap.set('n', '<leader>qa', '<Cmd>%bd <bar> e# <bar> bd# <CR>', { desc = 'Close all buffers except the current' })
+vim.keymap.set('n', '<leader>Q', '<Cmd>%bd <bar> e# <bar> bd# <CR>', { desc = 'Close all buffers except the current' })
 vim.keymap.set('n', '<leader>bn', '<Cmd>enew<CR>', { desc = 'Create empty buffer' })
 
 -- Harpoon
