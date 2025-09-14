@@ -26,6 +26,7 @@ return {
           analyses = {
             unusedparams = true,
           },
+          buildFlags = { '-tags=integration unit wireinject' },
         },
       },
       pyright = {
@@ -93,6 +94,7 @@ return {
     }
 
     mason_lspconfig.setup {
+      automatic_enable = true,
       ensure_installed = vim.tbl_keys(servers),
       -- auto-install configured servers (with lspconfig)
       automatic_installation = true, -- not the same as ensure_installed
@@ -132,23 +134,22 @@ return {
       nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
       nmap('<leader>wa', vim.lsp.buf.add_workspace_folder, '[W]orkspace [A]dd Folder')
     end
-    mason_lspconfig.setup_handlers {
-      function(server_name)
-        lspconfig[server_name].setup {
-          capabilities = capabilities,
-          on_attach = on_attach,
-          settings = servers[server_name],
-          filetypes = (servers[server_name] or {}).filetypes,
-          init_options = (servers[server_name] or {}).init_options,
-          root_dir = function(filename)
-            if servers[server_name].root_dir then
-              return lspconfig.util.root_pattern(servers[server_name].root_dir)(filename)
-            end
-            return nil
-          end,
-        }
-      end,
-    }
+
+    for server_name, _ in pairs(servers) do
+      require('lspconfig')[server_name].setup {
+        capabilities = capabilities,
+        on_attach = on_attach,
+        settings = servers[server_name],
+        filetypes = (servers[server_name] or {}).filetypes,
+        init_options = (servers[server_name] or {}).init_options,
+        root_dir = function(filename)
+          if servers[server_name].root_dir then
+            return lspconfig.util.root_pattern(servers[server_name].root_dir)(filename)
+          end
+          return nil
+        end,
+      }
+    end
 
     -- lspconfig.dartls.setup {
     --   on_attach = on_attach,

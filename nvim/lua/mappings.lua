@@ -38,7 +38,7 @@ vim.keymap.set('n', '<leader>dfc', '<Cmd>DiffviewClose<CR>', { desc = 'Close dif
 vim.keymap.set('n', '<C-l>', '<Cmd>bn<CR>', { desc = 'Next buffer' })
 vim.keymap.set('n', '<C-h>', '<Cmd>bp<CR>', { desc = 'Previous buffer' })
 vim.keymap.set('n', '<leader>q', '<Cmd>bd<CR>', { desc = 'Close buffer' })
-vim.keymap.set('n', '<leader>qa', '<Cmd>%bd <bar> e# <bar> bd# <CR>', { desc = 'Close all buffers except the current' })
+vim.keymap.set('n', '<leader>Q', '<Cmd>%bd <bar> e# <bar> bd# <CR>', { desc = 'Close all buffers except the current' })
 vim.keymap.set('n', '<leader>bn', '<Cmd>enew<CR>', { desc = 'Create empty buffer' })
 
 -- Harpoon
@@ -104,10 +104,6 @@ vim.keymap.set('n', '<leader>/', function()
     previewer = false,
   })
 end, { desc = '[/] Fuzzily search in current buffer' })
-
-vim.keymap.set('n', '<leader>gf', function()
-  require('telescope.builtin').git_files()
-end, { desc = 'Search [G]it [F]iles' })
 
 vim.keymap.set('n', '<leader>sf', function()
   require('telescope.builtin').find_files()
@@ -274,6 +270,13 @@ vim.keymap.set('n', '<leader>fe', '<CMD>FlutterEmulators<CR>', { desc = 'Flutter
 -- Oil
 vim.keymap.set('n', '<leader>o', '<CMD>Oil<CR>', { desc = 'Open parent directory' })
 
+-- NvimTree
+vim.keymap.set('n', '<leader>tu', '<CMD>NvimTreeFindFile<CR>', { desc = 'Move the cursor in the tree for the current buffer, opening folders if needed' })
+vim.keymap.set('n', '<leader>tr', '<CMD>NvimTreeToggle<CR>', { desc = 'Open or close the tree' })
+
+-- Go
+vim.keymap.set('n', '<leader>im', '<CMD>GoImplements<CR>', { desc = 'Go to interface implementation' })
+
 -- Smart splits
 -- recommended mappings
 -- resizing splits
@@ -340,6 +343,14 @@ end, { desc = 'Close all folds' })
 vim.keymap.set('n', '<leader>g', function()
   Snacks.lazygit()
 end, { desc = 'Open Lazygit' })
+
+vim.keymap.set('n', '<leader>gl', function()
+  Snacks.lazygit()
+end, { desc = 'Open git log' })
+
+vim.keymap.set('n', '<leader>gf', function()
+  Snacks.lazygit()
+end, { desc = 'Open git log file' })
 
 vim.keymap.set('n', '<leader>gy', function()
   require('gitlinker').get_buf_range_url('n', {})

@@ -26,6 +26,7 @@ return {
         'goimports',
         'gofumpt',
         'golines',
+        'gotests',
         'prettier',
         'js-debug-adapter',
         'delve',
