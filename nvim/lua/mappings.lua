@@ -131,6 +131,10 @@ vim.keymap.set('n', '<leader>sr', function()
   require('telescope.builtin').resume()
 end, { desc = '[S]earch [R]esume' })
 
+vim.keymap.set('n', '<leader>sm', function()
+  require('telescope.builtin').marks()
+end, { desc = '[S]earch [D]iagnostics' })
+
 vim.keymap.set('n', '<leader>sS', '<Cmd>Telescope persisted<CR>', { desc = '[S]earch [S]essions' })
 
 -- Spectre
