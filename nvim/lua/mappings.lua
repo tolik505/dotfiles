@@ -275,8 +275,8 @@ vim.keymap.set('n', '<leader>fe', '<CMD>FlutterEmulators<CR>', { desc = 'Flutter
 vim.keymap.set('n', '<leader>o', '<CMD>Oil<CR>', { desc = 'Open parent directory' })
 
 -- NvimTree
-vim.keymap.set('n', '<leader>tu', '<CMD>NvimTreeFindFile<CR>', { desc = 'Move the cursor in the tree for the current buffer, opening folders if needed' })
-vim.keymap.set('n', '<leader>tr', '<CMD>NvimTreeToggle<CR>', { desc = 'Open or close the tree' })
+vim.keymap.set('n', '<leader>tu', '<cmd>Yazi<cr>', { desc = 'Open yazi at the current file' })
+vim.keymap.set('n', '<leader>tr', '<cmd>Yazi cwd<cr>', { desc = "Open the file manager in nvim's working directory" })
 
 -- Go
 vim.keymap.set('n', '<leader>im', '<CMD>GoImplements<CR>', { desc = 'Go to interface implementation' })
