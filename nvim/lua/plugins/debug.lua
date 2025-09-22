@@ -103,7 +103,7 @@ return {
     -- Install golang specific config
     require('dap-go').setup {
       delve = {
-        build_flags = { '-tags=integration' },
+        build_flags = { '-tags=integration unit' },
       },
     }
     require('dap-python').setup 'uv'
@@ -122,41 +122,41 @@ return {
     --   },
     -- }
 
-    for _, language in ipairs { 'typescript', 'javascript' } do
-      dap.configurations[language] = {
-        {
-          type = 'pwa-node',
-          request = 'launch',
-          name = 'Launch file',
-          program = '${file}',
-          cwd = '${workspaceFolder}',
-        },
-      }
-    end
+    -- for _, language in ipairs { 'typescript', 'javascript' } do
+    --   dap.configurations[language] = {
+    --     {
+    --       type = 'pwa-node',
+    --       request = 'launch',
+    --       name = 'Launch file',
+    --       program = '${file}',
+    --       cwd = '${workspaceFolder}',
+    --     },
+    --   }
+    -- end
 
-    dap.configurations.php = {
-      {
-        log = true,
-        type = 'php',
-        request = 'launch',
-        name = 'Listen for XDebug',
-        port = 9003,
-        stopOnEntry = false,
-        xdebugSettings = {
-          max_children = 512,
-          max_data = 1024,
-          max_depth = 4,
-        },
-        breakpoints = {
-          exception = {
-            Notice = false,
-            Warning = false,
-            Error = false,
-            Exception = false,
-            ['*'] = false,
-          },
-        },
-      },
-    }
+    -- dap.configurations.php = {
+    --   {
+    --     log = true,
+    --     type = 'php',
+    --     request = 'launch',
+    --     name = 'Listen for XDebug',
+    --     port = 9003,
+    --     stopOnEntry = false,
+    --     xdebugSettings = {
+    --       max_children = 512,
+    --       max_data = 1024,
+    --       max_depth = 4,
+    --     },
+    --     breakpoints = {
+    --       exception = {
+    --         Notice = false,
+    --         Warning = false,
+    --         Error = false,
+    --         Exception = false,
+    --         ['*'] = false,
+    --       },
+    --     },
+    --   },
+    -- }
   end,
 }

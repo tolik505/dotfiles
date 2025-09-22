@@ -4,3 +4,5 @@ fish/functions
 fish/completions
 fish/conf.d
 .DS_Store
+nushell/history.txt
+nvim/spell

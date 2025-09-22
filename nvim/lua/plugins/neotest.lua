@@ -51,6 +51,13 @@ return {
               '-coverprofile='
                 .. vim.fn.getcwd()
                 .. '/coverage.out',
+              '-coverpkg=./...',
+            },
+            -- go_list_args = { '-tags=integration unit' },
+            dap_go_opts = {
+              delve = {
+                build_flags = { '-tags=integration unit' },
+              },
             },
           },
           require 'neotest-python',

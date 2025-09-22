@@ -5,8 +5,12 @@ return {
     'neovim/nvim-lspconfig',
     'nvim-treesitter/nvim-treesitter',
   },
-  config = function()
-    require('go').setup()
+  opts = {
+    -- lsp_keymaps = false,
+    -- other options
+  },
+  config = function(lp, opts)
+    require('go').setup(opts)
   end,
   event = { 'CmdlineEnter' },
   ft = { 'go', 'gomod' },
