@@ -23,12 +23,14 @@ vim.keymap.set('n', '<leader>co', '<Cmd>copen<CR>', { desc = 'Open quickfix list
 vim.keymap.set('n', '<leader>cc', '<Cmd>cclose<CR>', { desc = 'Close quickfix list' })
 
 -- Diagnostic keymaps
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
+vim.keymap.set('n', '[d', vim.diagnostic.get_prev, { desc = 'Go to previous diagnostic message' })
+vim.keymap.set('n', ']d', vim.diagnostic.get_next, { desc = 'Go to next diagnostic message' })
 vim.keymap.set('n', '<leader>fd', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
 vim.keymap.set('n', '<leader>ld', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 vim.keymap.set('n', '<leader>ed', vim.diagnostic.enable, { desc = 'Enable diagnostics' })
-vim.keymap.set('n', '<leader>dd', vim.diagnostic.disable, { desc = 'Disable diagnostics' })
+vim.keymap.set('n', '<leader>dd', function()
+  vim.diagnostic.enable(false)
+end, { desc = 'Disable diagnostics' })
 
 -- Diffview
 vim.keymap.set('n', '<leader>dfo', '<Cmd>DiffviewOpen<CR>', { desc = 'Open diff view' })
@@ -159,9 +161,23 @@ vim.keymap.set('n', '<leader>ss', '<Cmd>SessionSave<CR>', { desc = '[S]ession [S
 vim.keymap.set('n', '<leader>sl', '<Cmd>SessionLoad<CR>', { desc = '[S]ession [L]oad' })
 
 -- Tests
+vim.keymap.set('n', '<leader>ta', function()
+  require('neotest').run.run(vim.uv.cwd())
+end, { desc = 'Run all tests' })
+
+vim.keymap.set('n', '<leader>tS', function()
+  require('neotest').run.run { suite = true }
+end, { desc = 'Run tests in suite' })
+
 vim.keymap.set('n', '<leader>tt', function()
   require('neotest').run.run()
 end, { desc = 'Run nearest test' })
+
+vim.keymap.set('n', '<leader>tl', function()
+  require('neotest').run.run_last()
+end, { desc = 'Run last test' })
+
+vim.keymap.set('n', '<leader>tg', '<cmd>GoTestFunc<cr>', { desc = 'Run nearest Go test' })
 
 vim.keymap.set('n', '<leader>tf', function()
   require('neotest').run.run(vim.fn.expand '%')
@@ -172,7 +188,7 @@ vim.keymap.set('n', '<leader>ts', function()
 end, { desc = 'Stop test' })
 
 vim.keymap.set('n', '<leader>to', function()
-  require('neotest').output.open()
+  require('neotest').output.open { enter = true, auto_close = true }
 end, { desc = 'Open test output' })
 
 vim.keymap.set('n', '<leader>tp', function()
@@ -188,10 +204,8 @@ vim.keymap.set('n', '<leader>tm', function()
 end, { desc = 'Test summary' })
 
 vim.keymap.set('n', '<leader>td', function()
-  require('neotest').run.run { strategy = 'dap' }
+  require('neotest').run.run { suite = false, strategy = 'dap' }
 end, { desc = 'Debug nearest test' })
-
-vim.keymap.set('n', '<leader>tg', '<cmd>GoTests<cr>', { desc = 'Generate go test' })
 
 -- Text Coverage
 vim.keymap.set('n', '<leader>cl', '<Cmd>Coverage<CR>', { desc = '[C]overage [L]oad' })
@@ -335,14 +349,6 @@ vim.keymap.set('n', '<leader>nd', function()
   Snacks.notifier.hide()
 end, { desc = 'Notifications dismiss' })
 
--- Using ufo provider need remap `zR` and `zM`. If Neovim is 0.6.1, remap yourself
-vim.keymap.set('n', 'zR', function()
-  require('ufo').openAllFolds()
-end, { desc = 'Open all folds' })
-vim.keymap.set('n', 'zM', function()
-  require('ufo').closeAllFolds()
-end, { desc = 'Close all folds' })
-
 -- Git
 vim.keymap.set('n', '<leader>g', function()
   Snacks.lazygit()
@@ -388,8 +394,13 @@ vim.keymap.set({ 'n', 'v' }, '<leader>ff', function()
   }
 end, { desc = 'Format file or range (in visual mode)' })
 
--- Linting
-vim.keymap.set('n', '<leader>fl', '<cmd>EslintFixAll<CR>', { desc = 'Eslint fix all' })
+-- Origami
+vim.keymap.set('n', 'h', function()
+  require('origami').h()
+end)
+vim.keymap.set('n', '$', function()
+  require('origami').dollar()
+end)
 
 -- Markdown preview
 vim.keymap.set('n', '<leader>mp', '<cmd>MarkdownPreviewToggle<CR>', { desc = 'Markdown preview toggle' })

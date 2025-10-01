@@ -47,7 +47,7 @@ return {
       },
     }
     -- Enable extension 'persisted' for sessions search
-    require('telescope').load_extension 'persisted'
+    -- require('telescope').load_extension 'persisted'
 
     -- Enable telescope fzf native, if installed
     pcall(require('telescope').load_extension, 'fzf')
