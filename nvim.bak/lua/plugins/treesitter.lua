@@ -1,14 +1,16 @@
 return {
   -- Highlight, edit, and navigate code
   'nvim-treesitter/nvim-treesitter',
+  lazy = false,
+  branch = 'main',
+  build = ':TSUpdate',
   event = { 'BufRead', 'BufNewFile' },
   dependencies = {
     'nvim-treesitter/nvim-treesitter-textobjects',
     'RRethy/nvim-treesitter-textsubjects',
     { 'nushell/tree-sitter-nu', build = ':TSUpdate nu' },
   },
-  build = ':TSUpdate',
-  init = function()
+  config = function()
     -- [[ Configure Treesitter ]]
     -- See `:help nvim-treesitter`
     -- Defer Treesitter setup after first render to improve startup time of 'nvim {filename}'
@@ -31,6 +33,11 @@ return {
           'regex',
           'terraform',
           'dart',
+          'gowork',
+          'gosum',
+          'gotmpl',
+          'json',
+          'comment',
         },
 
         -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)

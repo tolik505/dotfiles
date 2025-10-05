@@ -3,7 +3,7 @@
 # version = "0.99.1"
 
 def create_left_prompt [] {
-    let dir = match (do --ignore-shell-errors { $env.PWD | path relative-to $nu.home-path }) {
+    let dir = match (do -i { $env.PWD | path relative-to $nu.home-path }) {
         null => $env.PWD
         '' => '~'
         $relative_pwd => ([~ $relative_pwd] | path join)
@@ -112,14 +112,16 @@ $env.PATH = (
   | append /Applications/Docker.app/Contents/Resources/bin
   | append /usr/local/bin
   | append /opt/podman/bin
+  | append ($env.HOME | path join Library Python 3.9 bin)
   | uniq # filter so the paths are unique
 )
 
 $env.GOPATH = ($env.HOME | path join go)
 $env.GOBIN = ($env.HOME | path join go bin)
 
-mkdir ~/.cache/starship
-starship init nu | save -f ~/.cache/starship/init.nu
+$env.STARSHIP_SHELL = "nu"
+mkdir ($nu.data-dir | path join "vendor/autoload")
+starship init nu | save -f ($nu.data-dir | path join "vendor/autoload/starship.nu")
 
 zoxide init nushell | save -f ~/.zoxide.nu
 

@@ -902,25 +902,71 @@ $env.config = {
 
 alias vi = nvim 
 alias ll = ls -l 
+alias la = ls -a 
 alias d = podman
 alias k = kubectl
 alias py = /opt/homebrew/bin/python3
 alias tm = tmux new -s
 alias tma = tmux attach-session
 alias tmk = tmux kill-session
-alias zes = zellij -s
-alias zel = zellij ls
-alias zea = zellij attach
-alias zek = zellij kill-session
-alias zeka = zellij kill-all-sessions
-alias zed = zellij delete-session
-alias zeda = zellij delete-all-sessions
+# alias zes = zellij -s
+# alias zel = zellij ls
+# alias zea = zellij attach
+# alias zek = zellij kill-session
+# alias zeka = zellij kill-all-sessions
+# alias zed = zellij delete-session
+# alias zeda = zellij delete-all-sessions
 
 use std/dirs shells-aliases *
 
 use ~/.cache/starship/init.nu
 
 source ~/.zoxide.nu
+def "nu-complete zoxide path" [context: string] {
+    let parts = $context | str trim --left | split row " " | skip 1 | each { str downcase }
+    let completions = (
+        ^zoxide query --list --exclude $env.PWD -- ...$parts
+            | lines
+            | each { |dir|
+                if ($parts | length) <= 1 {
+                    $dir
+                } else {
+                    let dir_lower = $dir | str downcase
+                    let rem_start = $parts | drop 1 | reduce --fold 0 { |part, rem_start|
+                        ($dir_lower | str index-of --range $rem_start.. $part) + ($part | str length)
+                    }
+                    {
+                        value: ($dir | str substring $rem_start..),
+                        description: $dir
+                    }
+                }
+            })
+    {
+        options: {
+            sort: false,
+            completion_algorithm: substring,
+            case_sensitive: false,
+        },
+        completions: $completions,
+    }
+}
 
 source ~/.cache/carapace/init.nu
+
+$env.ATUIN_NOBIND = true
+atuin init nu | save -f ~/.local/share/atuin/init.nu #make sure you created the directory beforehand with `mkdir ~/.local/share/atuin/init.nu`
 source ~/.local/share/atuin/init.nu
+
+#bind to ctrl-r in emacs, vi_normal and vi_insert modes, add any other bindings you want here too
+$env.config = (
+    $env.config | upsert keybindings (
+        $env.config.keybindings
+        | append {
+            name: atuin
+            modifier: control
+            keycode: char_r
+            mode: [emacs, vi_normal, vi_insert]
+            event: { send: executehostcommand cmd: (_atuin_search_cmd) }
+        }
+    )
+)

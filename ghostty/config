@@ -1,5 +1,5 @@
-# theme = catppuccin-mocha
-font-size = 16
+theme = TokyoNight Moon
+font-size = 14
 mouse-hide-while-typing = true
 window-save-state = always
 title = " "

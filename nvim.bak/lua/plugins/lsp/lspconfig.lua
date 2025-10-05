@@ -13,7 +13,6 @@ return {
     { 'antosha417/nvim-lsp-file-operations', opts = {} },
   },
   config = function()
-    local lspconfig = require 'lspconfig'
     local mason_lspconfig = require 'mason-lspconfig'
 
     local servers = {
@@ -136,19 +135,21 @@ return {
     end
 
     for server_name, _ in pairs(servers) do
-      require('lspconfig')[server_name].setup {
+      vim.lsp.enable(server_name)
+      vim.lsp.config(server_name, {
         capabilities = capabilities,
         on_attach = on_attach,
         settings = servers[server_name],
-        filetypes = (servers[server_name] or {}).filetypes,
+        -- filetypes = (servers[server_name] or {}).filetypes,
         init_options = (servers[server_name] or {}).init_options,
-        root_dir = function(filename)
-          if servers[server_name].root_dir then
-            return lspconfig.util.root_pattern(servers[server_name].root_dir)(filename)
-          end
-          return nil
-        end,
-      }
+        -- root_dir = vim.fn.fnamemodify(debug.getinfo(1, 'S').source:sub(2), ':p:h'),
+        -- root_dir = function(filename)
+        --   if servers[server_name].root_dir then
+        --     return filename
+        --   end
+        --   return nil
+        -- end,
+      })
     end
 
     -- lspconfig.dartls.setup {
