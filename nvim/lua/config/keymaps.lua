@@ -74,5 +74,80 @@ vim.keymap.set("n", "$", function()
   require("origami").dollar()
 end)
 
+-- Harpoon
+vim.keymap.set("n", "<leader>H", function()
+  require("harpoon"):list():add()
+end, { desc = "Add buffer to harpoon" })
+
+vim.keymap.set("n", "<C-l>", function()
+  require("harpoon"):list():next()
+end, { desc = "Next harpoon buffer" })
+
+vim.keymap.set("n", "<C-h>", function()
+  require("harpoon"):list():prev()
+end, { desc = "Previous harpoon buffer" })
+
+vim.keymap.set("n", "<leader>h", function()
+  local harpoon = require("harpoon")
+  harpoon.ui:toggle_quick_menu(harpoon:list())
+end, { desc = "Toggle harpoon quick menu" })
+
+-- vim.keymap.set('n', '<leader>x', function()
+--   require('harpoon.mark').rm_file()
+-- end, { desc = 'Remove buffer from harpoon' })
+
+-- vim.keymap.set("n", "<leader>xa", function()
+--   require("harpoon.mark").clear_all()
+-- end, { desc = "Clear all buffers from harpoon" })
+
+-- vim.keymap.set("n", "<leader>e", "<Cmd>Telescope harpoon marks<CR>", { desc = "Toggle harpoon in telescope" })
+
+vim.keymap.set("n", "<C-j>", function()
+  require("harpoon"):list():select(1)
+end, { desc = "Navigate to harpoon buffer 1" })
+
+vim.keymap.set("n", "<C-k>", function()
+  require("harpoon"):list():select(2)
+end, { desc = "Navigate to harpoon buffer 2" })
+
+vim.keymap.set("n", "<C-m>", function()
+  require("harpoon"):list():select(3)
+end, { desc = "Navigate to harpoon buffer 3" })
+
+vim.keymap.set("n", "<C-n>", function()
+  require("harpoon"):list():select(4)
+end, { desc = "Navigate to harpoon buffer 4" })
+
+vim.keymap.set("n", "<C-p>", function()
+  require("harpoon"):list():select(5)
+end, { desc = "Navigate to harpoon buffer 5" })
+
+-- Smart splits
+-- resizing splits
+-- these keymaps will also accept a range,
+-- for example `10<A-h>` will `resize_left` by `(10 * config.default_amount)`
+vim.keymap.set("n", "<A-h>", function()
+  require("smart-splits").resize_left()
+end, { desc = "Resize window to left" })
+
+vim.keymap.set("n", "<A-j>", function()
+  require("smart-splits").resize_down()
+end, { desc = "Resize window down" })
+
+vim.keymap.set("n", "<A-k>", function()
+  require("smart-splits").resize_up()
+end, { desc = "Resize window up" })
+
+vim.keymap.set("n", "<A-l>", function()
+  require("smart-splits").resize_right()
+end, { desc = "Resize window to right" })
+
+-- Flutter
+vim.keymap.set("n", "<leader>flr", "<CMD>FlutterRun<CR>", { desc = "Flutter Run" })
+vim.keymap.set("n", "<leader>flo", "<CMD>FlutterReload<CR>", { desc = "Flutter Reload" })
+vim.keymap.set("n", "<leader>fls", "<CMD>FlutterRestart<CR>", { desc = "Flutter Restart" })
+vim.keymap.set("n", "<leader>flq", "<CMD>FlutterQuit<CR>", { desc = "Flutter Quit" })
+vim.keymap.set("n", "<leader>fle", "<CMD>FlutterEmulators<CR>", { desc = "Flutter Emulators" })
+
 -- Useless
 vim.keymap.set("n", "<leader>fa", "<cmd>CellularAutomaton game_of_life<CR>", { desc = "Funny animation" })
